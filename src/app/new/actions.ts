@@ -36,7 +36,7 @@ export async function createProject(_prevState: unknown, formData: FormData) {
         userId: session.user?.id,
       })
       .returning();
-  } catch (error) {
+  } catch (error: any) {
     if (error.message.includes("UNIQUE constraint")) {
       return { error: "Project name already in taken." };
     }
