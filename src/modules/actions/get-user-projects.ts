@@ -1,8 +1,7 @@
-import { eq, or } from "drizzle-orm";
-import { cache } from "react";
+import { eq } from "drizzle-orm";
 
 import { db } from "@/db";
-import { links, Project, projects, users } from "@/db/schema";
+import { Project, projects } from "@/db/schema";
 
 export const getUserProjects = async ({
   userId,

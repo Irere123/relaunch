@@ -13,7 +13,7 @@ const schema = z.object({
   description: z.string(),
 });
 
-export async function createProject(_prevState: any, formData: FormData) {
+export async function createProject(_prevState: unknown, formData: FormData) {
   const session = await auth();
 
   if (!session?.user) {
@@ -36,7 +36,7 @@ export async function createProject(_prevState: any, formData: FormData) {
         userId: session.user?.id,
       })
       .returning();
-  } catch (error: any) {
+  } catch (error) {
     if (error.message.includes("UNIQUE constraint")) {
       return { error: "Project name already in taken." };
     }

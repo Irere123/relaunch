@@ -1,5 +1,4 @@
 import { signOut } from "@/modules/auth";
-import { redirect } from "next/navigation";
 
 export default function SignOutPage() {
   return (

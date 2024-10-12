@@ -9,14 +9,14 @@ export default async function DashboardPage() {
     redirect("/");
   }
 
-  const projects = await getUserProjects({ userId: session?.user?.id! });
+  const projects = await getUserProjects({ userId: session.user.id! });
 
   return (
     <div>
       <p>Hello dashboard</p>
       {projects!.length < 1 ? (
         <div>
-          <p>You don't have project showcased yet.</p>
+          <p>You don&apos;t have project showcased yet.</p>
           <p>Create one</p>
         </div>
       ) : (

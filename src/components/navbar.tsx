@@ -11,7 +11,7 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 
 export default function Navbar() {
   const scrolled = useScroll(50);
-  const { data, status } = useSession();
+  const { data } = useSession();
 
   return (
     <div

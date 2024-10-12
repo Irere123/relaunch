@@ -20,10 +20,10 @@ export const Testimonials: React.FC = () => {
                 />
               </div>
               <div className="text-gray-200">
-                "Stripe for payments, Vercel for deployments, Dub for links. As
-                the cloud evolves, we abstract out common needs into reusable,
-                high-performance infrastructure. Excited about Dub filling this
-                foundational missing piece of the puzzle."
+                &quot;Stripe for payments, Vercel for deployments, Dub for
+                links. As the cloud evolves, we abstract out common needs into
+                reusable, high-performance infrastructure. Excited about Dub
+                filling this foundational missing piece of the puzzle.&quot;
               </div>
               <div className="mt-8 flex items-center justify-between">
                 <div className="flex flex-col space-y-0.5 invert">
@@ -62,10 +62,10 @@ export const Testimonials: React.FC = () => {
                 />
               </div>
               <div className="text-gray-700">
-                "Stripe for payments, Vercel for deployments, Dub for links. As
-                the cloud evolves, we abstract out common needs into reusable,
-                high-performance infrastructure. Excited about Dub filling this
-                foundational missing piece of the puzzle."
+                &quot;Stripe for payments, Vercel for deployments, Dub for
+                links. As the cloud evolves, we abstract out common needs into
+                reusable, high-performance infrastructure. Excited about Dub
+                filling this foundational missing piece of the puzzle.&quot;
               </div>
               <div className="mt-8 flex items-center justify-between">
                 <div className="flex flex-col space-y-0.5 invert">
@@ -104,10 +104,10 @@ export const Testimonials: React.FC = () => {
                 />
               </div>
               <div className="text-gray-200">
-                "Stripe for payments, Vercel for deployments, Dub for links. As
-                the cloud evolves, we abstract out common needs into reusable,
-                high-performance infrastructure. Excited about Dub filling this
-                foundational missing piece of the puzzle."
+                &quot;Stripe for payments, Vercel for deployments, Dub for
+                links. As the cloud evolves, we abstract out common needs into
+                reusable, high-performance infrastructure. Excited about Dub
+                filling this foundational missing piece of the puzzle.&quot;
               </div>
               <div className="mt-8 flex items-center justify-between">
                 <div className="flex flex-col space-y-0.5 invert">
@@ -146,10 +146,10 @@ export const Testimonials: React.FC = () => {
                 />
               </div>
               <div className="text-gray-200">
-                "Stripe for payments, Vercel for deployments, Dub for links. As
-                the cloud evolves, we abstract out common needs into reusable,
-                high-performance infrastructure. Excited about Dub filling this
-                foundational missing piece of the puzzle."
+                &quot;Stripe for payments, Vercel for deployments, Dub for
+                links. As the cloud evolves, we abstract out common needs into
+                reusable, high-performance infrastructure. Excited about Dub
+                filling this foundational missing piece of the puzzle.&quot;
               </div>
               <div className="mt-8 flex items-center justify-between">
                 <div className="flex flex-col space-y-0.5 invert">
@@ -188,10 +188,10 @@ export const Testimonials: React.FC = () => {
                 />
               </div>
               <div className="text-gray-200">
-                "Stripe for payments, Vercel for deployments, Dub for links. As
-                the cloud evolves, we abstract out common needs into reusable,
-                high-performance infrastructure. Excited about Dub filling this
-                foundational missing piece of the puzzle."
+                &quot;Stripe for payments, Vercel for deployments, Dub for
+                links. As the cloud evolves, we abstract out common needs into
+                reusable, high-performance infrastructure. Excited about Dub
+                filling this foundational missing piece of the puzzle.&quot;
               </div>
               <div className="mt-8 flex items-center justify-between">
                 <div className="flex flex-col space-y-0.5 invert">
@@ -230,10 +230,10 @@ export const Testimonials: React.FC = () => {
                 />
               </div>
               <div className="text-gray-200">
-                "Stripe for payments, Vercel for deployments, Dub for links. As
-                the cloud evolves, we abstract out common needs into reusable,
-                high-performance infrastructure. Excited about Dub filling this
-                foundational missing piece of the puzzle."
+                &quot;Stripe for payments, Vercel for deployments, Dub for
+                links. As the cloud evolves, we abstract out common needs into
+                reusable, high-performance infrastructure. Excited about Dub
+                filling this foundational missing piece of the puzzle.&quot;
               </div>
               <div className="mt-8 flex items-center justify-between">
                 <div className="flex flex-col space-y-0.5 invert">

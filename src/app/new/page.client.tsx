@@ -20,7 +20,7 @@ export const CreateProjectForm = () => {
       router.push(state.redirect);
       // toast.success("Successfully submitted project!");
     }
-  }, [state?.redirect]);
+  }, [state?.redirect, router]);
 
   return (
     <form
