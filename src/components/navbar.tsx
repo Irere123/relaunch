@@ -8,10 +8,13 @@ import { useScroll } from "../hooks/use-scroll";
 import { Button, buttonVariants } from "./ui/button";
 import { cn } from "../lib/utils";
 import { Avatar, AvatarImage } from "./ui/avatar";
+import { Dashboard, Sparkles } from "./icons";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const scrolled = useScroll(50);
   const { data } = useSession();
+  const { push } = useRouter();
 
   return (
     <div
@@ -39,6 +42,7 @@ export default function Navbar() {
               "px-3 py-1.5"
             )}
           >
+            <Sparkles className="w-4 h-4" />
             <p className="text-sm ml-2">{23}</p>
           </a>
           {data?.user ? (
@@ -47,7 +51,7 @@ export default function Navbar() {
                 href={`/dashboard`}
                 className="flex justify-center items-center h-10 w-10 bg-muted rounded-full"
               >
-                Dash
+                <Dashboard />
               </Link>
               <Link href={`/profile`}>
                 <Avatar>
@@ -56,7 +60,7 @@ export default function Navbar() {
               </Link>
             </>
           ) : (
-            <Button onClick={() => {}}>Sign in</Button>
+            <Button onClick={async () => push("/auth/sign-in")}>Sign in</Button>
           )}
         </div>
       </div>

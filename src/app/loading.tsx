@@ -8,9 +8,9 @@ export default function Loading() {
           <Image
             src="/logomark.svg"
             alt="ReLaunch Logo"
-            width={64}
-            height={64}
-            className="h-16 animate-fade-down"
+            width={100}
+            height={100}
+            className="animate-fade-down"
           />
         </div>
       </div>
