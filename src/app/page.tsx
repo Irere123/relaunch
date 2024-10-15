@@ -1,6 +1,7 @@
 import { Testimonials } from "@/components/home/Testimonials";
 import { BookOpen } from "@/components/icons";
 import { MainLayout } from "@/components/layouts/MainLayout";
+import ProjectsList from "@/components/projects/projects-list";
 import Link from "next/link";
 
 export default function Home() {
@@ -27,7 +28,8 @@ export default function Home() {
           className="mt-6 animate-fade-up text-center text-gray-500 opacity-0 [text-wrap:balance] md:text-xl"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
-          A plaform to showcase your projects on the internet.
+          Share your work and connect with a global audience in a space designed
+          to reflect your unique style.
         </p>
       </div>
       <div
@@ -38,11 +40,9 @@ export default function Home() {
           <div className="grid gap-4 w-full">
             <Testimonials />
           </div>
-
-          <div className="mb-8 mt-12 border-t border-gray-200" />
-
           <div className="grid gap-4">
-            <h2 className="font-display text-2xl">All Projects</h2>
+            <h2 className="font-medium text-center text-4xl">Showcase</h2>
+            <ProjectsList />
           </div>
         </div>
       </div>
