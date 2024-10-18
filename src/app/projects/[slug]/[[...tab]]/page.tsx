@@ -20,6 +20,8 @@ export default async function ProjectPage({
     notFound();
   }
 
+  console.log(tab);
+
   return (
     <div>
       <p>Hello world</p>

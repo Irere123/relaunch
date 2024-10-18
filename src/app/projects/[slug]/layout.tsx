@@ -1,5 +1,5 @@
 import { getProject } from "@/modules/actions";
-import { Globe, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
