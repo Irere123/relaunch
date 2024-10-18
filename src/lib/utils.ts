@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from "clsx";
+import { Metadata } from "next";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -35,3 +36,43 @@ export function nFormatter(
     ? (num / item.value).toFixed(opts.digits).replace(rx, "$1") + item.symbol
     : "0";
 }
+
+export function constructMetadata({
+  title = "Relaunch",
+  description = "Showcasing your ideas to the public internet.",
+  image = "https://relaunch-pro.vercel.app",
+}: {
+  title?: string;
+  description?: string;
+  image?: string | null;
+}): Metadata {
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      ...(image && {
+        images: [{ url: image }],
+      }),
+    },
+    twitter: {
+      title,
+      description,
+      ...(image && {
+        card: "summary_large_image",
+        images: [image],
+      }),
+      creator: "@irere_emmanuel",
+    },
+    metadataBase: new URL("https://relaunch-pro.vercel.app"),
+  };
+}
+
+export const getUrlWithRef = (url: string) => {
+  const urlWithRef = new URL(url);
+
+  urlWithRef.searchParams.set("ref", "relaunch");
+
+  return urlWithRef.toString();
+};

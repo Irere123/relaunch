@@ -7,9 +7,9 @@ export const projects = sqliteTable("project", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
-  name: text("name").unique(),
-  slug: text("slug").unique(),
-  description: text("description"),
+  name: text("name").unique().notNull(),
+  slug: text("slug").unique().notNull(),
+  description: text("description").notNull(),
   logo: text("logo"),
   image: text("image"),
   gradient: text("gradient").default(

@@ -36,6 +36,13 @@
       "when": 1728732607382,
       "tag": "0004_zippy_thena",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1729265356266,
+      "tag": "0005_tidy_rumiko_fujikawa",
+      "breakpoints": true
     }
   ]
 }

@@ -1,10 +1,18 @@
 import { getProject } from "@/modules/actions";
 import { notFound } from "next/navigation";
 
+export async function generateStaticParams() {
+  return [
+    {
+      tab: [], // for the root page
+    },
+  ];
+}
+
 export default async function ProjectPage({
-  params: { slug },
+  params: { slug, tab },
 }: {
-  params: { slug: string };
+  params: { slug: string; tab: string };
 }) {
   const project = await getProject({ slug });
 
@@ -14,8 +22,7 @@ export default async function ProjectPage({
 
   return (
     <div>
-      <p>{project.name}</p>
-      <p>{project.description}</p>
+      <p>Hello world</p>
     </div>
   );
 }
