@@ -54,7 +54,7 @@ export default async function ProjectLayout({
     <MainLayout>
       <div
         className={cn(
-          "relative aspect-[4/1] w-full rounded-t-2xl bg-gradient-to-tr",
+          "relative aspect-[4/1] w-full rounded-t-2xl bg-gradient-to-tr mt-6",
           project.gradient
         )}
       ></div>

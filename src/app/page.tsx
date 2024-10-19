@@ -2,7 +2,9 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { BookOpen } from "@/components/icons";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import ProjectsList from "@/components/projects/projects-list";
+import SearchBar, { SearchBarPlaceholder } from "@/components/ui/search-bar";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -31,7 +33,16 @@ export default function Home() {
           Share your work and connect with a global audience in a space designed
           to reflect your unique style.
         </p>
+        <div
+          className="mx-auto mt-10 flex animate-fade-up items-center justify-center space-x-5 opacity-0"
+          style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
+        >
+          <Suspense fallback={<SearchBarPlaceholder />}>
+            <SearchBar />
+          </Suspense>
+        </div>
       </div>
+
       <div
         className="animate-fade-up opacity-0 mx-auto"
         style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
@@ -40,8 +51,9 @@ export default function Home() {
           <div className="grid gap-4 w-full">
             <Testimonials />
           </div>
+
           <div className="grid gap-4">
-            <h2 className="font-medium text-center text-4xl">Showcase</h2>
+            <h2 className="font-medium text-center text-4xl">All projects</h2>
             <ProjectsList />
           </div>
         </div>

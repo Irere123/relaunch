@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-geist-sans)"],
+        mono: ["var(--font-geist-mono)"],
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -91,12 +95,48 @@ const config: Config = {
             transform: "translateY(0px)",
           },
         },
+        // Custom spinner animation (for loading-spinner)
+        spinner: {
+          "0%": {
+            opacity: "1",
+          },
+          "100%": {
+            opacity: "0",
+          },
+        },
+        // Custom blink animation (for loading-dots)
+        blink: {
+          "0%": {
+            opacity: "0.2",
+          },
+          "20%": {
+            opacity: "1",
+          },
+          "100%": {
+            opacity: "0.2",
+          },
+        },
+        // Custom pulse animation
+        pulse: {
+          from: {
+            opacity: "0",
+          },
+          to: {
+            opacity: "1",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.5s",
         "fade-down": "fade-down 0.5s",
+        // Custom spinner animation (for loading-spinner)
+        spinner: "spinner 1.2s linear infinite",
+        // Custom blink animation (for loading-dots)
+        blink: "blink 1.4s infinite both",
+        // Custom pulse animation
+        pulse: "pulse 1s linear infinite alternate",
       },
     },
   },

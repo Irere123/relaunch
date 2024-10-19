@@ -1,5 +1,7 @@
 import React from "react";
-import Navbar from "../navbar";
+
+import Nav from "../nav";
+import Footer from "../footer";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -7,13 +9,14 @@ interface MainLayoutProps {
 
 export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
-    <div className="flex flex-col w-full h-fullbg-gradient-to-br from-indigo-50 via-white to-cyan-100">
-      <Navbar />
-      <div className="w-full">
+    <>
+      <Nav />
+      <div className="w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-50 py-16">
         <div className="mx-auto min-h-screen w-full max-w-screen-lg">
           {children}
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };

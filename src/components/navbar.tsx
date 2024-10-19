@@ -2,23 +2,29 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
 
 import { useScroll } from "../hooks/use-scroll";
 import { Button, buttonVariants } from "./ui/button";
-import { cn } from "../lib/utils";
+import { cn, nFormatter } from "../lib/utils";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { Dashboard, Sparkles } from "./icons";
 import { useRouter } from "next/navigation";
+import { Session } from "next-auth";
 
-export default function Navbar() {
+export default function Navbar({
+  session,
+  stars,
+}: {
+  session: Session | null;
+  stars: number;
+}) {
   const scrolled = useScroll(50);
-  const { data } = useSession();
+
   const { push } = useRouter();
 
   return (
     <div
-      className={`sticky top-0 flex w-full justify-center ${
+      className={`fixed top-0 flex w-full justify-center ${
         scrolled
           ? "border-b border-gray-200 bg-white/50 backdrop-blur-xl"
           : "bg-white/0"
@@ -35,7 +41,7 @@ export default function Navbar() {
         </Link>
         <div className="flex items-center space-x-2">
           <a
-            href="https://github.com/irere123/codehunt"
+            href="https://github.com/irere123/relaunch-v2"
             target="_blank"
             className={cn(
               buttonVariants({ variant: "secondary" }),
@@ -43,9 +49,9 @@ export default function Navbar() {
             )}
           >
             <Sparkles className="w-4 h-4" />
-            <p className="text-sm ml-2">{23}</p>
+            <p className="text-sm ml-2">{nFormatter(stars, { full: true })}</p>
           </a>
-          {data?.user ? (
+          {session?.user ? (
             <>
               <Link
                 href={`/dashboard`}
@@ -55,12 +61,12 @@ export default function Navbar() {
               </Link>
               <Link href={`/profile`}>
                 <Avatar>
-                  <AvatarImage src={data.user.image!} />
+                  <AvatarImage src={session.user.image!} />
                 </Avatar>
               </Link>
             </>
           ) : (
-            <Button onClick={async () => push("/auth/sign-in")}>Sign in</Button>
+            <Button onClick={async () => push("/auth/sign-in")}>Submit</Button>
           )}
         </div>
       </div>
