@@ -12,7 +12,7 @@ export async function generateStaticParams() {
 export default async function ProjectPage({
   params: { slug, tab },
 }: {
-  params: { slug: string; tab: string };
+  params: { slug: string; tab?: string[] };
 }) {
   const project = await getProject({ slug });
 
@@ -20,7 +20,21 @@ export default async function ProjectPage({
     notFound();
   }
 
-  console.log(tab);
+  if (tab?.[0] === "team") {
+    return (
+      <div>
+        <p>Team for project</p>
+      </div>
+    );
+  }
+
+  if (tab?.[0] === "reviews") {
+    return (
+      <div>
+        <p>Project reviews</p>
+      </div>
+    );
+  }
 
   return (
     <div>

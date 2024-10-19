@@ -9,6 +9,7 @@ import { buttonLinkVariants } from "@/components/ui/button-link";
 import { db } from "@/db";
 import { projects } from "@/db/schema";
 import { cn, constructMetadata, nFormatter } from "@/lib/utils";
+import ProjectLayoutTabs from "@/components/projects/project-layout-tabs";
 
 export const revalidate = 43200;
 
@@ -86,7 +87,7 @@ export default async function ProjectLayout({
         </div>
         <p className="mt-2 text-gray-500">{}</p>
       </div>
-      {/* <ProjectLayoutTabs /> */}
+      <ProjectLayoutTabs />
 
       <div className="relative mx-4 flex min-h-[22rem] items-center justify-center rounded-xl border border-gray-200 bg-white p-4">
         {children}
