@@ -13,11 +13,17 @@ import ProjectLayoutTabs from "@/components/projects/project-layout-tabs";
 
 export const revalidate = 43200;
 
-export async function generateMetadata({
-  params: { slug },
-}: {
-  params: { slug: string };
-}) {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    slug
+  } = params;
+
   const project = await getProject({ slug });
 
   if (!project) {
@@ -38,13 +44,22 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function ProjectLayout({
-  params: { slug },
-  children,
-}: {
-  params: { slug: string };
-  children: React.ReactNode;
-}) {
+export default async function ProjectLayout(
+  props: {
+    params: Promise<{ slug: string }>;
+    children: React.ReactNode;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    slug
+  } = params;
+
+  const {
+    children
+  } = props;
+
   const project = await getProject({ slug });
 
   if (!project) {

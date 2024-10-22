@@ -9,11 +9,18 @@ export async function generateStaticParams() {
   ];
 }
 
-export default async function ProjectPage({
-  params: { slug, tab },
-}: {
-  params: { slug: string; tab?: string[] };
-}) {
+export default async function ProjectPage(
+  props: {
+    params: Promise<{ slug: string; tab?: string[] }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    slug,
+    tab
+  } = params;
+
   const project = await getProject({ slug });
 
   if (!project) {
