@@ -7,13 +7,11 @@ export const getUserProjects = async ({
   userId,
 }: {
   userId: string;
-}): Promise<Project[] | null> => {
+}): Promise<Project[]> => {
   const result = await db
     .select()
     .from(projects)
     .where(eq(projects.userId, userId));
-
-  if (!result) return null;
 
   return result;
 };

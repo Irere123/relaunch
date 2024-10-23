@@ -59,7 +59,7 @@ export default function Navbar({
               >
                 <Dashboard />
               </Link>
-              <Link href={`/profile`}>
+              <Link href={`/u/${session.user.id}`}>
                 <Avatar>
                   <AvatarImage src={session.user.image!} />
                 </Avatar>
