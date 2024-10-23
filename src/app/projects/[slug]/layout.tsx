@@ -11,7 +11,7 @@ import { projects } from "@/db/schema";
 import { cn, constructMetadata, nFormatter } from "@/lib/utils";
 import ProjectLayoutTabs from "@/components/projects/project-layout-tabs";
 import { incrementClicks } from "@/modules/projects/incrementClicks";
-import { EditGradientPopover } from "@/components/projects/edit-gradient-popover";
+// import { EditGradientPopover } from "@/components/projects/edit-gradient-popover";
 
 export const revalidate = 43200;
 
