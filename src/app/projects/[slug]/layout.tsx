@@ -10,7 +10,7 @@ import { db } from "@/db";
 import { projects } from "@/db/schema";
 import { cn, constructMetadata, nFormatter } from "@/lib/utils";
 import ProjectLayoutTabs from "@/components/projects/project-layout-tabs";
-import { incrementClicks } from "@/modules/projects/incrementClicks";
+import incrementClicks from "@/modules/projects/incrementClicks";
 import { EditGradientPopover } from "@/components/projects/edit-gradient-popover";
 
 export const revalidate = 43200;
@@ -100,10 +100,9 @@ export default async function ProjectLayout(props: {
   );
 }
 
-const incrementClicksCount = cache(incrementClicks);
-
 async function Clicks({ id, clicks }: { id: string; clicks: number }) {
-  incrementClicksCount(id);
+  incrementClicks(id);
+
   return (
     <button
       type="button"
