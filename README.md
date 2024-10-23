@@ -1,5 +1,5 @@
 <a href="https://relaunch-dev.vercel.app">
-  <img alt="The open-source project gallery." src="https://github.com/irere123/relaunch-v2/public/logomark.svg">
+  <img alt="The open-source project gallery." src="https://github.com/Irere123/relaunch-v2/blob/master/public/logomark.svg">
 </a>
 
 <h3 align="center">Relaunch</h3>
@@ -19,7 +19,7 @@
 
 <p align="center">
   <a href="https://twitter.com/irere_emmanuel">
-    <img src="https://img.shields.io/twitter/follow/irere_emmanuel?style=flat&label=%40dubdotco&logo=twitter&color=0bf&logoColor=fff" alt="Twitter" />
+    <img src="https://img.shields.io/twitter/follow/irere_emmanuel?style=flat&label=%40irere&logo=twitter&color=0bf&logoColor=fff" alt="Twitter" />
   </a>
   <a href="https://github.com/irere123/relaunch-v2/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/irere123/relaunch-v2?label=license&logo=github&color=f80&logoColor=fff" alt="License" />
