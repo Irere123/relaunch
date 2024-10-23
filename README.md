@@ -1,8 +1,4 @@
-<a href="https://relaunch-dev.vercel.app">
-  <img alt="The open-source project gallery." src="https://github.com/Irere123/relaunch-v2/blob/master/public/logomark.svg">
-</a>
-
-<h3 align="center">Relaunch</h3>
+<h1 align="center">Relaunch</h1>
 
 <p align="center">
     The open-source project gallery.
@@ -56,10 +52,6 @@ We love our contributors! Here's how you can contribute:
 - Follow the [local development guide](https://github.com/irere123/relaunch-v2/CONTRIBUTING.md) to get your local dev environment set up.
 - Make a [pull request](https://github.com/irere123/relaunch-v2/pull) to add new features/make quality-of-life improvements/fix bugs.
 
-<a href="https://github.com/irere123/relaunch-v2/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=irere123/relaunch-v2" />
-</a>
-
 ## License
 
-Inspired by [Plausible](https://plausible.io/), Relaunch is open-source under the GNU Affero General Public License Version 3 (AGPLv3) or any later version. You can [find it here](https://github.com/irere123/relaunch-v2/blob/master/LICENSE.md).
+Inspired by [Plausible](https://plausible.io/), Relaunch is open-source under the GNU Affero General Public License Version 3 (AGPLv3) or any later version. You can [find it here](https://github.com/Irere123/relaunch-v2/blob/master/LICENSE).
