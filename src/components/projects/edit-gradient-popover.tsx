@@ -7,7 +7,7 @@ export async function EditGradientPopover({ project }: { project: Project }) {
 
   if (!session) return null;
 
-  if (session.user?.id === project.userId) {
+  if (project.userId === session.user?.id) {
     return (
       <div className="absolute bottom-2 right-2 z-10">
         <EditGradientPopoverClient project={project} />

@@ -1,4 +1,4 @@
-"use client";
+"use server";
 
 import { eq } from "drizzle-orm";
 import { ZodError } from "zod";

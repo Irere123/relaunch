@@ -1,8 +1,8 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
 import { Check, Edit2 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 
 import { Project } from "@/db/schema";
 import { Popover } from "../ui/popover";
@@ -39,7 +39,7 @@ export function EditGradientPopoverClient({ project }: { project: Project }) {
 }
 
 const EditGradientForm = ({ project }: { project: Project }) => {
-  const [state, formAction] = useFormState<FormResponse, FormData>(
+  const [state, formAction] = useActionState<FormResponse, FormData>(
     editGradient,
     null
   );
