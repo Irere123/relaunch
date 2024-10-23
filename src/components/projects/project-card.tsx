@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Star } from "lucide-react";
+import { Eye } from "lucide-react";
 
 import { Project } from "@/db/schema";
 import { cn, nFormatter } from "@/lib/utils";
@@ -17,7 +17,7 @@ export default function ProjectCard(project: Project) {
           "aspect-[5/2] w-full rounded-t-xl bg-gradient-to-tr",
           project.gradient
         )}
-      />
+      ></div>
       <div className="-mt-8 flex items-center justify-between px-2">
         <Image
           src={project.logo || "/relaunch.svg"}
@@ -27,7 +27,7 @@ export default function ProjectCard(project: Project) {
           className="h-16 w-16 rounded-full bg-white p-2"
         />
         <div className={buttonLinkVariants({ variant: "secondary" })}>
-          <Star className="h-4 w-4" />
+          <Eye className="h-4 w-4" />
           <p className="text-sm">
             {nFormatter(project.likes as number, { full: true })}
           </p>

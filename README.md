@@ -34,6 +34,8 @@ Relaunch is the open-source plaform for showcasing your projects to the internet
 - Analytics
 - Feedback
 - Rating
+- Project Newsletter (Cooming soon)
+- Waitlists (Planned)
 
 ## Tech Stack
 

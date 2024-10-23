@@ -1,8 +1,8 @@
 import { getProject } from "@/modules/actions";
-import { Star } from "lucide-react";
+import { Eye } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
+import { cache, Suspense } from "react";
 
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { buttonLinkVariants } from "@/components/ui/button-link";
@@ -10,19 +10,17 @@ import { db } from "@/db";
 import { projects } from "@/db/schema";
 import { cn, constructMetadata, nFormatter } from "@/lib/utils";
 import ProjectLayoutTabs from "@/components/projects/project-layout-tabs";
+import { incrementClicks } from "@/modules/projects/incrementClicks";
+import { EditGradientPopover } from "@/components/projects/edit-gradient-popover";
 
 export const revalidate = 43200;
 
-export async function generateMetadata(
-  props: {
-    params: Promise<{ slug: string }>;
-  }
-) {
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
+}) {
   const params = await props.params;
 
-  const {
-    slug
-  } = params;
+  const { slug } = params;
 
   const project = await getProject({ slug });
 
@@ -44,21 +42,15 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function ProjectLayout(
-  props: {
-    params: Promise<{ slug: string }>;
-    children: React.ReactNode;
-  }
-) {
+export default async function ProjectLayout(props: {
+  params: Promise<{ slug: string }>;
+  children: React.ReactNode;
+}) {
   const params = await props.params;
 
-  const {
-    slug
-  } = params;
+  const { slug } = params;
 
-  const {
-    children
-  } = props;
+  const { children } = props;
 
   const project = await getProject({ slug });
 
@@ -73,7 +65,11 @@ export default async function ProjectLayout(
           "relative aspect-[4/1] w-full rounded-t-2xl bg-gradient-to-tr mt-6",
           project.gradient
         )}
-      ></div>
+      >
+        <Suspense>
+          <EditGradientPopover project={project} />
+        </Suspense>
+      </div>
       <div className="relative -mt-8 flex items-center justify-between px-4 sm:-mt-12 sm:items-end md:pr-0">
         <Image
           src={"/relaunch.svg"}
@@ -86,14 +82,7 @@ export default async function ProjectLayout(
           <Suspense>
             <button>Edit project</button>
           </Suspense>
-          <a
-            href={""}
-            target="_blank"
-            className={buttonLinkVariants({ variant: "secondary" })}
-          >
-            <Star className="h-4 w-4" />
-            <p className="text-sm">{nFormatter(2342, { full: true })}</p>
-          </a>
+          <Clicks clicks={project.clicks as number} id={project.id} />
         </div>
       </div>
       <div className="max-w-lg p-4 pb-0">
@@ -108,5 +97,20 @@ export default async function ProjectLayout(
         {children}
       </div>
     </MainLayout>
+  );
+}
+
+let incrementClicksCount = cache(incrementClicks);
+
+async function Clicks({ id, clicks }: { id: string; clicks: number }) {
+  incrementClicksCount(id);
+  return (
+    <button
+      type="button"
+      className={buttonLinkVariants({ variant: "secondary" })}
+    >
+      <Eye className="h-4 w-4" />
+      <p className="text-sm">{nFormatter(clicks, { full: true })}</p>
+    </button>
   );
 }
