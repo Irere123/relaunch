@@ -2,7 +2,7 @@ import { getProject } from "@/modules/actions";
 import { Eye } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { cache, Suspense } from "react";
+import { Suspense } from "react";
 
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { buttonLinkVariants } from "@/components/ui/button-link";
