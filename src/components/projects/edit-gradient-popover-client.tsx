@@ -17,6 +17,7 @@ import { editGradient } from "@/modules/actions/edit-gradient";
 
 export function EditGradientPopoverClient({ project }: { project: Project }) {
   const [openPopover, setOpenPopover] = useState(false);
+
   return (
     <Popover
       content={<EditGradientForm project={project} />}

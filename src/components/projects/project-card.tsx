@@ -29,7 +29,7 @@ export default function ProjectCard(project: Project) {
         <div className={buttonLinkVariants({ variant: "secondary" })}>
           <Eye className="h-4 w-4" />
           <p className="text-sm">
-            {nFormatter(project.likes as number, { full: true })}
+            {nFormatter(project.clicks as number, { full: true })}
           </p>
         </div>
       </div>
