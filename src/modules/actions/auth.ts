@@ -1,7 +1,8 @@
+import { and, eq } from "drizzle-orm";
+
 import { db } from "@/db";
 import { auth } from "../auth";
 import { projects } from "@/db/schema";
-import { eq } from "drizzle-orm";
 
 export async function authUser() {
   const session = await auth();
@@ -19,7 +20,9 @@ export async function authProject({ projectId }: { projectId: string }) {
   const userIsProjectAdmin = await db
     .select()
     .from(projects)
-    .where(eq(projects.userId, session.user?.id!))
+    .where(
+      and(eq(projects.userId, session.user?.id!), eq(projects.id, projectId))
+    )
     .limit(1);
 
   if (!userIsProjectAdmin) {

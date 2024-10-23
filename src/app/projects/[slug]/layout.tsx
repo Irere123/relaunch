@@ -100,7 +100,7 @@ export default async function ProjectLayout(props: {
   );
 }
 
-let incrementClicksCount = cache(incrementClicks);
+const incrementClicksCount = cache(incrementClicks);
 
 async function Clicks({ id, clicks }: { id: string; clicks: number }) {
   incrementClicksCount(id);
