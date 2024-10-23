@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<a href="https://relaunch-dev.vercel.app">
+  <img alt="The open-source project gallery." src="https://github.com/irere123/relaunch-v2/public/logomark.svg">
+</a>
 
-## Getting Started
+<h3 align="center">Relaunch</h3>
 
-First, run the development server:
+<p align="center">
+    The open-source project gallery.
+    <br />
+    <a href="https://relaunch-dev.vercel.app"><strong>Learn more »</strong></a>
+    <br />
+    <br />
+    <a href="#introduction"><strong>Introduction</strong></a> ·
+    <a href="#features"><strong>Features</strong></a> ·
+    <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
+    <a href="#license"><strong>License</strong></a> ·
+    <a href="#contributing"><strong>Contributing</strong></a>
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<p align="center">
+  <a href="https://twitter.com/irere_emmanuel">
+    <img src="https://img.shields.io/twitter/follow/irere_emmanuel?style=flat&label=%40dubdotco&logo=twitter&color=0bf&logoColor=fff" alt="Twitter" />
+  </a>
+  <a href="https://github.com/irere123/relaunch-v2/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/irere123/relaunch-v2?label=license&logo=github&color=f80&logoColor=fff" alt="License" />
+  </a>
+</p>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<br/>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Introduction
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Relaunch is the open-source plaform for showcasing your projects to the internet!
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- Project profiles
+- Analytics
+- Feedback
+- Rating
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Next.js](https://nextjs.org/) – framework
+- [TypeScript](https://www.typescriptlang.org/) – language
+- [Tailwind](https://tailwindcss.com/) – CSS
+- [Turso](https://turso.tech/) – database
+- [NextAuth.js](https://next-auth.js.org/) – auth
+- [Vercel](https://vercel.com/) – deployments
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+We love our contributors! Here's how you can contribute:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Open an issue](https://github.com/irere123/relaunch-v2/issues) if you believe you've encountered a bug.
+- Follow the [local development guide](https://github.com/irere123/relaunch-v2/CONTRIBUTING.md) to get your local dev environment set up.
+- Make a [pull request](https://github.com/irere123/relaunch-v2/pull) to add new features/make quality-of-life improvements/fix bugs.
+
+<a href="https://github.com/irere123/relaunch-v2/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=irere123/relaunch-v2" />
+</a>
+
+## License
+
+Inspired by [Plausible](https://plausible.io/), Relaunch is open-source under the GNU Affero General Public License Version 3 (AGPLv3) or any later version. You can [find it here](https://github.com/irere123/relaunch-v2/blob/master/LICENSE.md).
