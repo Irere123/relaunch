@@ -21,7 +21,10 @@ export async function authProject({ projectId }: { projectId: string }) {
     .select()
     .from(projects)
     .where(
-      and(eq(projects.userId, session.user?.id!), eq(projects.id, projectId))
+      and(
+        eq(projects.userId, session.user?.id as string),
+        eq(projects.id, projectId)
+      )
     )
     .limit(1);
 
