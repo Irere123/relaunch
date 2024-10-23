@@ -66,9 +66,7 @@ export default async function ProjectLayout(props: {
           project.gradient
         )}
       >
-        <Suspense>
-          <EditGradientPopover project={project} />
-        </Suspense>
+        <Suspense>{/* <EditGradientPopover project={project} /> */}</Suspense>
       </div>
       <div className="relative -mt-8 flex items-center justify-between px-4 sm:-mt-12 sm:items-end md:pr-0">
         <Image
