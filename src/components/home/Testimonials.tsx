@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 export const Testimonials: React.FC = () => {
@@ -7,40 +8,33 @@ export const Testimonials: React.FC = () => {
         <li className="rounded-3xl transition-all hover:shadow-lg">
           <div className="relative break-inside-avoid rounded-3xl border border-gray-300 backdrop-blur-lg row-span-2 bg-gradient-to-tr from-transparent via-transparent to-[rgb(255,255,255,0.25)] bg-black">
             <img
-              src="https://assets.dub.co/testimonials/card-dotted-grid-dark.png"
+              src="/images/card-dotted-grid-dark.png"
               alt="Dotted grid background"
               className="pointer-events-none absolute right-0 top-0"
             />
             <div className="flex h-full flex-col justify-between p-8">
-              <div className="relative h-36">
-                <img
-                  src="https://assets.dub.co/testimonials/vercel.svg"
-                  alt="Vercel"
-                  className="absolute h-8 w-fit"
-                />
-              </div>
               <div className="text-gray-200">
-                &quot;Stripe for payments, Vercel for deployments, Dub for
-                links. As the cloud evolves, we abstract out common needs into
-                reusable, high-performance infrastructure. Excited about Dub
-                filling this foundational missing piece of the puzzle.&quot;
+                &quot;This platform transformed how we engage with the public.
+                It&lsquo;s not just a showcase—it&lsquo;s a conversation hub.
+                The community feedback helped refine our concept into a more
+                viable solution.&quot;
               </div>
               <div className="mt-8 flex items-center justify-between">
                 <div className="flex flex-col space-y-0.5 invert">
-                  <div className="font-semibold text-gray-800">
-                    Guillermo Rauch
+                  <div className="font-semibold text-gray-800">Emily Tan</div>
+                  <div className="text-sm text-gray-500">
+                    Founder at IdeaBloom
                   </div>
-                  <div className="text-sm text-gray-500">CEO, Vercel</div>
                 </div>
                 <img
-                  alt="Guillermo Rauch"
+                  alt="Emily Tan"
                   loading="lazy"
                   width="300"
                   height="300"
                   decoding="async"
                   data-nimg="1"
                   className="blur-0 h-12 w-12 rounded-full border border-gray-800"
-                  src="https://assets.dub.co/testimonials/guillermo-rauch.jpeg"
+                  src="/images/emily-tan.jpg"
                 />
               </div>
             </div>
@@ -50,26 +44,26 @@ export const Testimonials: React.FC = () => {
           <div className="relative break-inside-avoid rounded-3xl border border-gray-300 bg-white/20 backdrop-blur-lg">
             <div className="flex h-full flex-col justify-between p-8">
               <div className="text-gray-700">
-                &quot;Stripe for payments, Vercel for deployments, Dub for
-                links. As the cloud evolves, we abstract out common needs into
-                reusable, high-performance infrastructure. Excited about Dub
-                filling this foundational missing piece of the puzzle.&quot;
+                &quot;This platform has been a game-changer for our innovation
+                team. It allows us to gather insights and refine our ideas
+                faster than traditional methods, making our product development
+                more agile and user-focused.&quot;
               </div>
               <div className="mt-8 flex items-center justify-between">
                 <div className="flex flex-col space-y-0.5 invert">
                   <div className="font-semibold text-gray-800">
-                    Guillermo Rauch
+                    Irere Emmanuel
                   </div>
-                  <div className="text-sm text-gray-900">CEO, Vercel</div>
+                  <div className="text-sm text-gray-900">Founder, Relaunch</div>
                 </div>
                 <img
-                  alt="Guillermo Rauch"
+                  alt="Chris Thompson"
                   loading="lazy"
                   width="300"
                   height="300"
                   decoding="async"
                   data-nimg="1"
-                  className="blur-0 h-12 w-12 rounded-full border border-gray-800"
+                  className="blur-0 h-12 w-12 rounded-full"
                   src="https://assets.dub.co/testimonials/guillermo-rauch.jpeg"
                 />
               </div>
@@ -80,27 +74,29 @@ export const Testimonials: React.FC = () => {
           <div className="relative break-inside-avoid rounded-3xl border border-gray-300 backdrop-blur-lg row-span-2">
             <div className="flex h-full flex-col justify-between p-8">
               <div className="text-gray-800">
-                &quot;Stripe for payments, Vercel for deployments, Dub for
-                links. As the cloud evolves, we abstract out common needs into
-                reusable, high-performance infrastructure. Excited about Dub
-                filling this foundational missing piece of the puzzle.&quot;
+                &quot;Brilliant for open innovation! I&lsquo;ve seen startups
+                and solo creators use this to gather insights, iterate quickly,
+                and make data-driven pivots based on real-world feedback.&quot;
               </div>
               <div className="mt-8 flex items-center justify-between">
                 <div className="flex flex-col space-y-0.5 invert">
                   <div className="font-semibold text-gray-800">
-                    Guillermo Rauch
+                    James Wilson
                   </div>
-                  <div className="text-sm text-gray-500">CEO, Vercel</div>
+
+                  <div className="text-sm text-gray-500">
+                    Tech Enthusiast and Blogger
+                  </div>
                 </div>
-                <img
-                  alt="Guillermo Rauch"
+                <Image
+                  alt="James Wilson"
                   loading="lazy"
                   width="300"
                   height="300"
                   decoding="async"
                   data-nimg="1"
-                  className="blur-0 h-12 w-12 rounded-full border border-gray-800"
-                  src="https://assets.dub.co/testimonials/guillermo-rauch.jpeg"
+                  className="blur-0 h-12 w-12 rounded-full"
+                  src="/images/james-wilson.jpg"
                 />
               </div>
             </div>
@@ -109,33 +105,34 @@ export const Testimonials: React.FC = () => {
         <li className="rounded-3xl transition-all hover:shadow-lg">
           <div className="relative break-inside-avoid rounded-3xl border border-gray-300 backdrop-blur-lg row-span-2 bg-gradient-to-tr from-transparent via-transparent to-[rgb(255,255,255,0.25)] bg-black">
             <img
-              src="https://assets.dub.co/testimonials/card-dotted-grid-dark.png"
+              src="/images/card-dotted-grid-dark.png"
               alt="Dotted grid background"
               className="pointer-events-none absolute right-0 top-0"
             />
             <div className="flex h-full flex-col justify-between p-8">
               <div className="text-gray-200">
-                &quot;Stripe for payments, Vercel for deployments, Dub for
-                links. As the cloud evolves, we abstract out common needs into
-                reusable, high-performance infrastructure. Excited about Dub
-                filling this foundational missing piece of the puzzle.&quot;
+                &quot;Finally, a platform that truly focuses on bringing
+                creators and feedback together in one space! It gave our project
+                the validation and constructive criticism we needed to fine-tune
+                our vision and polish our design before launching to a broader
+                audience.&quot;
               </div>
               <div className="mt-8 flex items-center justify-between">
                 <div className="flex flex-col space-y-0.5 invert">
                   <div className="font-semibold text-gray-800">
-                    Guillermo Rauch
+                    Lukas Schmidt
                   </div>
-                  <div className="text-sm text-gray-500">CEO, Vercel</div>
+                  <div className="text-sm text-gray-500">Product Designer</div>
                 </div>
-                <img
-                  alt="Guillermo Rauch"
+                <Image
+                  alt="Lukas Schmidt"
                   loading="lazy"
                   width="300"
                   height="300"
                   decoding="async"
                   data-nimg="1"
                   className="blur-0 h-12 w-12 rounded-full border border-gray-800"
-                  src="https://assets.dub.co/testimonials/guillermo-rauch.jpeg"
+                  src="/images/lukas.png"
                 />
               </div>
             </div>
@@ -144,40 +141,35 @@ export const Testimonials: React.FC = () => {
         <li className="rounded-3xl transition-all hover:shadow-lg">
           <div className="relative break-inside-avoid rounded-3xl border border-gray-300 backdrop-blur-lg row-span-2 bg-gradient-to-tr from-transparent via-transparent to-[rgb(255,255,255,0.25)] bg-black">
             <img
-              src="https://assets.dub.co/testimonials/card-dotted-grid-dark.png"
+              src="/images/card-dotted-grid-dark.png"
               alt="Dotted grid background"
               className="pointer-events-none absolute right-0 top-0"
             />
             <div className="flex h-full flex-col justify-between p-8">
-              <div className="relative h-36">
-                <img
-                  src="https://assets.dub.co/testimonials/vercel.svg"
-                  alt="Vercel"
-                  className="absolute h-8 w-fit"
-                />
-              </div>
               <div className="text-gray-200">
-                &quot;Stripe for payments, Vercel for deployments, Dub for
-                links. As the cloud evolves, we abstract out common needs into
-                reusable, high-performance infrastructure. Excited about Dub
-                filling this foundational missing piece of the puzzle.&quot;
+                &quot;It&lsquo;s the perfect blend of creativity and
+                collaboration. Not only can I showcase my projects, but I also
+                receive genuine feedback that challenges my thinking and pushes
+                me to improve my work.&quot;
               </div>
               <div className="mt-8 flex items-center justify-between">
                 <div className="flex flex-col space-y-0.5 invert">
                   <div className="font-semibold text-gray-800">
-                    Guillermo Rauch
+                    Rajesh Kumar
                   </div>
-                  <div className="text-sm text-gray-500">CEO, Vercel</div>
+                  <div className="text-sm text-gray-500">
+                    Open-Source Advocate
+                  </div>
                 </div>
-                <img
-                  alt="Guillermo Rauch"
+                <Image
+                  alt="Rajesh Kumar"
                   loading="lazy"
                   width="300"
                   height="300"
                   decoding="async"
                   data-nimg="1"
                   className="blur-0 h-12 w-12 rounded-full border border-gray-800"
-                  src="https://assets.dub.co/testimonials/guillermo-rauch.jpeg"
+                  src="/images/rajesh.jpg"
                 />
               </div>
             </div>
@@ -186,33 +178,33 @@ export const Testimonials: React.FC = () => {
         <li className="rounded-3xl transition-all hover:shadow-lg">
           <div className="relative break-inside-avoid rounded-3xl border border-gray-300 backdrop-blur-lg row-span-2 bg-gradient-to-tr from-transparent via-transparent to-[rgb(255,97,97,0.25)] bg-black">
             <img
-              src="https://assets.dub.co/testimonials/card-dotted-grid-dark.png"
+              src="/images/card-dotted-grid-dark.png"
               alt="Dotted grid background"
               className="pointer-events-none absolute right-0 top-0"
             />
             <div className="flex h-full flex-col justify-between p-8">
               <div className="text-gray-200">
-                &quot;Stripe for payments, Vercel for deployments, Dub for
-                links. As the cloud evolves, we abstract out common needs into
-                reusable, high-performance infrastructure. Excited about Dub
-                filling this foundational missing piece of the puzzle.&quot;
+                &quot;Being able to present my work to a wider audience and
+                receive targeted suggestions has been invaluable. The platform
+                is easy to use and has a supportive community eager to help you
+                succeed.&quot;
               </div>
               <div className="mt-8 flex items-center justify-between">
                 <div className="flex flex-col space-y-0.5 invert">
                   <div className="font-semibold text-gray-800">
-                    Guillermo Rauch
+                    Kwizera Aimable
                   </div>
-                  <div className="text-sm text-gray-500">CEO, Vercel</div>
+                  <div className="text-sm text-gray-500">Software Engineer</div>
                 </div>
                 <img
-                  alt="Guillermo Rauch"
+                  alt="Kwizera Aimable"
                   loading="lazy"
                   width="300"
                   height="300"
                   decoding="async"
                   data-nimg="1"
                   className="blur-0 h-12 w-12 rounded-full border border-gray-800"
-                  src="https://assets.dub.co/testimonials/guillermo-rauch.jpeg"
+                  src="/images/dmitry.jpg"
                 />
               </div>
             </div>
