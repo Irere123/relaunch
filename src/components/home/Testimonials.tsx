@@ -21,20 +21,20 @@ export const Testimonials: React.FC = () => {
               </div>
               <div className="mt-8 flex items-center justify-between">
                 <div className="flex flex-col space-y-0.5 invert">
-                  <div className="font-semibold text-gray-800">Emily Tan</div>
-                  <div className="text-sm text-gray-500">
-                    Founder at IdeaBloom
+                  <div className="font-semibold text-gray-800">
+                    Irere Emmanuel
                   </div>
+                  <div className="text-sm text-gray-500">Founder, Relaunch</div>
                 </div>
                 <img
-                  alt="Emily Tan"
+                  alt="Irere Emmanuel"
                   loading="lazy"
                   width="300"
                   height="300"
                   decoding="async"
                   data-nimg="1"
                   className="blur-0 h-12 w-12 rounded-full border border-gray-800"
-                  src="/images/emily-tan.jpg"
+                  src="/images/irere.png"
                 />
               </div>
             </div>
@@ -51,20 +51,18 @@ export const Testimonials: React.FC = () => {
               </div>
               <div className="mt-8 flex items-center justify-between">
                 <div className="flex flex-col space-y-0.5 invert">
-                  <div className="font-semibold text-gray-800">
-                    Irere Emmanuel
-                  </div>
-                  <div className="text-sm text-gray-900">Founder, Relaunch</div>
+                  <div className="font-semibold text-gray-800">Emily Tan</div>
+                  <div className="text-sm text-gray-900">Product Designer</div>
                 </div>
-                <img
-                  alt="Chris Thompson"
+                <Image
+                  alt="Emily Tan"
                   loading="lazy"
                   width="300"
                   height="300"
                   decoding="async"
                   data-nimg="1"
                   className="blur-0 h-12 w-12 rounded-full"
-                  src="https://assets.dub.co/testimonials/guillermo-rauch.jpeg"
+                  src="/images/emily-tan.jpg"
                 />
               </div>
             </div>
@@ -146,6 +144,13 @@ export const Testimonials: React.FC = () => {
               className="pointer-events-none absolute right-0 top-0"
             />
             <div className="flex h-full flex-col justify-between p-8">
+              <div className="relative h-36">
+                <img
+                  src="/images/GitHub_Logo_White.png"
+                  alt="Github"
+                  className="absolute h-8 w-fit"
+                />
+              </div>
               <div className="text-gray-200">
                 &quot;It&lsquo;s the perfect blend of creativity and
                 collaboration. Not only can I showcase my projects, but I also
