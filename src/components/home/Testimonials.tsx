@@ -13,6 +13,13 @@ export const Testimonials: React.FC = () => {
               className="pointer-events-none absolute right-0 top-0"
             />
             <div className="flex h-full flex-col justify-between p-8">
+              <div className="relative h-36">
+                <img
+                  src="/logo-large.svg"
+                  alt="Relaunch"
+                  className="absolute h-8 w-fit"
+                />
+              </div>
               <div className="text-gray-200">
                 &quot;This platform transformed how we engage with the public.
                 It&lsquo;s not just a showcase—it&lsquo;s a conversation hub.
