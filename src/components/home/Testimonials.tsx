@@ -58,8 +58,8 @@ export const Testimonials: React.FC = () => {
               </div>
               <div className="mt-8 flex items-center justify-between">
                 <div className="flex flex-col space-y-0.5 invert">
-                  <div className="font-semibold text-gray-800">Emily Tan</div>
-                  <div className="text-sm text-gray-900">Product Designer</div>
+                  <div className="font-semibold text-gray-500">Emily Tan</div>
+                  <div className="text-sm text-gray-400">Product Designer</div>
                 </div>
                 <Image
                   alt="Emily Tan"
@@ -85,7 +85,7 @@ export const Testimonials: React.FC = () => {
               </div>
               <div className="mt-8 flex items-center justify-between">
                 <div className="flex flex-col space-y-0.5 invert">
-                  <div className="font-semibold text-gray-800">
+                  <div className="font-semibold text-gray-500">
                     James Wilson
                   </div>
 

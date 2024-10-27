@@ -12,6 +12,8 @@ import { cn, constructMetadata, nFormatter } from "@/lib/utils";
 import ProjectLayoutTabs from "@/components/projects/project-layout-tabs";
 import incrementClicks from "@/modules/projects/incrementClicks";
 import { EditGradientPopover } from "@/components/projects/edit-gradient-popover";
+import { ProjectContextProvider } from "@/components/projects/project-provider";
+import { EditProjectButton } from "@/components/projects/edit-project-button";
 
 export const revalidate = 43200;
 
@@ -59,44 +61,46 @@ export default async function ProjectLayout(props: {
   }
 
   return (
-    <MainLayout>
-      <div
-        className={cn(
-          "relative aspect-[4/1] w-full rounded-t-2xl bg-gradient-to-tr mt-6",
-          project.gradient
-        )}
-      >
-        <Suspense>
-          <EditGradientPopover project={project} />
-        </Suspense>
-      </div>
-      <div className="relative -mt-8 flex items-center justify-between px-4 sm:-mt-12 sm:items-end md:pr-0">
-        <Image
-          src={"/relaunch.svg"}
-          alt={""}
-          width={100}
-          height={100}
-          className="h-16 w-16 rounded-full bg-white p-2 sm:h-24 sm:w-24"
-        />
-        <div className="flex items-center space-x-2 py-2">
+    <ProjectContextProvider props={project}>
+      <MainLayout>
+        <div
+          className={cn(
+            "relative aspect-[4/1] w-full rounded-t-2xl bg-gradient-to-tr mt-6",
+            project.gradient
+          )}
+        >
           <Suspense>
-            <button>Edit project</button>
+            <EditGradientPopover project={project} />
           </Suspense>
-          <Clicks clicks={project.clicks as number} id={project.id} />
         </div>
-      </div>
-      <div className="max-w-lg p-4 pb-0">
-        <div className="flex items-center space-x-2">
-          <h1 className="font-display text-3xl font-bold">{}</h1>
+        <div className="relative -mt-8 flex items-center justify-between px-4 sm:-mt-12 sm:items-end md:pr-0">
+          <Image
+            src={"/relaunch.svg"}
+            alt={""}
+            width={100}
+            height={100}
+            className="h-16 w-16 rounded-full bg-white p-2 sm:h-24 sm:w-24"
+          />
+          <div className="flex items-center space-x-2 py-2">
+            <Suspense>
+              <EditProjectButton project={project} />
+            </Suspense>
+            <Clicks clicks={project.clicks as number} id={project.id} />
+          </div>
         </div>
-        <p className="mt-2 text-gray-500">{}</p>
-      </div>
-      <ProjectLayoutTabs />
+        <div className="max-w-lg p-4 pb-0">
+          <div className="flex items-center space-x-2">
+            <h1 className="font-display text-3xl font-bold">{}</h1>
+          </div>
+          <p className="mt-2 text-gray-500">{}</p>
+        </div>
+        <ProjectLayoutTabs />
 
-      <div className="relative mx-4 flex min-h-[22rem] items-center justify-center rounded-xl border border-gray-200 bg-white p-4">
-        {children}
-      </div>
-    </MainLayout>
+        <div className="relative mx-4 flex min-h-[22rem] items-center justify-center rounded-xl border border-gray-200 bg-white p-4">
+          {children}
+        </div>
+      </MainLayout>
+    </ProjectContextProvider>
   );
 }
 
