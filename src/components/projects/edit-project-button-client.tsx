@@ -3,8 +3,6 @@
 import { Edit2 } from "lucide-react";
 import { buttonLinkVariants } from "../ui/button-link";
 import { cn } from "@/lib/utils";
-import { useEditProjectModal } from "./edit-project-modal";
-import { Project } from "@/db/schema";
 import { useContext } from "react";
 import { ProjectContext } from "./project-provider";
 
