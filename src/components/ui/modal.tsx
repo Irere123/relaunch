@@ -1,22 +1,22 @@
 "use client";
 
-import { useMediaQuery } from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { useRouter } from "next/navigation";
 import { ComponentProps, Dispatch, SetStateAction } from "react";
 import { Drawer } from "vaul";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 export function Modal({
   children,
   className,
-  desktopOnly,
-  drawerRootProps,
-  onClose,
-  preventDefaultClose,
-  setShowModal,
   showModal,
+  setShowModal,
+  onClose,
+  desktopOnly,
+  preventDefaultClose,
+  drawerRootProps,
 }: {
   children: React.ReactNode;
   className?: string;
@@ -33,19 +33,17 @@ export function Modal({
     if (preventDefaultClose && !dragged) {
       return;
     }
-
     // fire onClose event if provided
     onClose && onClose();
 
     // if setShowModal is defined, use it to close modal
     if (setShowModal) {
       setShowModal(false);
-      // else, this is intercepting router modal
+      // else, this is intercepting route @modal
     } else {
       router.back();
     }
   };
-
   const { isMobile } = useMediaQuery();
 
   if (isMobile && !desktopOnly) {
@@ -72,10 +70,11 @@ export function Modal({
               <Drawer.Description>This is a modal</Drawer.Description>
             </VisuallyHidden.Root>
             <div className="sticky top-0 z-20 flex w-full items-center justify-center rounded-t-[10px] bg-inherit">
-              <div className="my-3 h-1 rounded-full bg-gray-300" />
+              <div className="my-3 h-1 w-12 rounded-full bg-gray-300" />
             </div>
             {children}
           </Drawer.Content>
+          <Drawer.Overlay />
         </Drawer.Portal>
       </Drawer.Root>
     );
