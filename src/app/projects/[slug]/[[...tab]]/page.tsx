@@ -1,3 +1,4 @@
+import { ProductAnalytics } from "@/components/projects/project-analytics";
 import { getProject } from "@/modules/actions";
 import { notFound } from "next/navigation";
 
@@ -9,17 +10,12 @@ export async function generateStaticParams() {
   ];
 }
 
-export default async function ProjectPage(
-  props: {
-    params: Promise<{ slug: string; tab?: string[] }>;
-  }
-) {
+export default async function ProjectPage(props: {
+  params: Promise<{ slug: string; tab?: string[] }>;
+}) {
   const params = await props.params;
 
-  const {
-    slug,
-    tab
-  } = params;
+  const { slug, tab } = params;
 
   const project = await getProject({ slug });
 
@@ -43,9 +39,5 @@ export default async function ProjectPage(
     );
   }
 
-  return (
-    <div>
-      <p>Hello world</p>
-    </div>
-  );
+  return <ProductAnalytics />;
 }

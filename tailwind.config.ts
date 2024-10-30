@@ -1,11 +1,12 @@
 import type { Config } from "tailwindcss";
+import colors from "tailwindcss/colors";
 
 const config: Config = {
   darkMode: ["class"],
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    // Path to Tremor module
+    "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -14,6 +15,37 @@ const config: Config = {
         mono: ["var(--font-geist-mono)"],
       },
       colors: {
+        // light mode
+        tremor: {
+          brand: {
+            faint: colors.blue[50],
+            muted: colors.blue[200],
+            subtle: colors.blue[400],
+            DEFAULT: colors.blue[500],
+            emphasis: colors.blue[700],
+            inverted: colors.white,
+          },
+          background: {
+            muted: colors.gray[50],
+            subtle: colors.gray[100],
+            DEFAULT: colors.white,
+            emphasis: colors.gray[700],
+          },
+          border: {
+            DEFAULT: colors.gray[200],
+          },
+          ring: {
+            DEFAULT: colors.gray[200],
+          },
+          content: {
+            subtle: colors.gray[400],
+            DEFAULT: colors.gray[500],
+            emphasis: colors.gray[700],
+            strong: colors.gray[900],
+            inverted: colors.white,
+          },
+        },
+
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -47,13 +79,6 @@ const config: Config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        chart: {
-          "1": "hsl(var(--chart-1))",
-          "2": "hsl(var(--chart-2))",
-          "3": "hsl(var(--chart-3))",
-          "4": "hsl(var(--chart-4))",
-          "5": "hsl(var(--chart-5))",
-        },
       },
       borderRadius: {
         lg: "var(--radius)",

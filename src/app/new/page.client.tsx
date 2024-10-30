@@ -8,8 +8,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/text-area";
 import { toast } from "@/hooks/use-toast";
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
-import { buttonLinkVariants } from "@/components/ui/button-link";
 import { Button } from "@/components/ui/button";
 
 const initialState = {
@@ -46,7 +44,9 @@ export const CreateProjectForm = () => {
       <Textarea placeholder="Add description" rows={5} name="description" />
       {state.error && <p>{state.error}</p>}
       <div className="flex justify-end space-x-4">
-        <Button variant={"ghost"}>Cancel</Button>
+        <Button variant={"ghost"} onClick={() => router.push("/dashboard")}>
+          Cancel
+        </Button>
         <Button
           type="submit"
           className="bg-gradient-to-br from-sky-600 to-sky-400 text-white"
