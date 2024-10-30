@@ -26,6 +26,8 @@ export async function editProject(
 
     const props = await getProject({ id: projectId });
 
+    console.log(props);
+
     if (
       props?.name !== name ||
       props.description !== description ||

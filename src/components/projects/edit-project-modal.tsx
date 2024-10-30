@@ -26,7 +26,7 @@ const EditProjectModal = ({
       showModal={showEditProjectModal}
       setShowModal={setShowEditProjectModal}
     >
-      <div className="flex flex-col items-center justify-center space-y-2 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center md:px-16">
+      <div className="flex flex-col items-center justify-center space-y-2 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center md:px-8">
         <Image
           src={props.logo || "/relaunch.svg"}
           alt="Logo"
