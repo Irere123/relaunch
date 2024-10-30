@@ -3,6 +3,7 @@
 import { useFormStatus } from "react-dom";
 import { Check, Edit2 } from "lucide-react";
 import { useActionState, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { Project } from "@/db/schema";
 import { Popover } from "../ui/popover";
@@ -14,6 +15,8 @@ import { PROJECT_GRADIENTS } from "@/lib/constants";
 import { Label } from "../ui/label";
 import { LoadingSpinner } from "../icons";
 import { editGradient } from "@/modules/actions/edit-gradient";
+import { toast } from "@/hooks/use-toast";
+import { revalidateProject } from "@/modules/actions/revalidate-project";
 
 export function EditGradientPopoverClient({ project }: { project: Project }) {
   const [openPopover, setOpenPopover] = useState(false);
@@ -39,6 +42,7 @@ export function EditGradientPopoverClient({ project }: { project: Project }) {
 }
 
 const EditGradientForm = ({ project }: { project: Project }) => {
+  const router = useRouter();
   const [state, formAction] = useActionState<FormResponse, FormData>(
     editGradient,
     null
@@ -53,10 +57,18 @@ const EditGradientForm = ({ project }: { project: Project }) => {
     }
 
     if (state.status == "error") {
-      console.log(state.errors);
+      toast({
+        description: state.message,
+        title: "Something went wrong",
+        variant: "destructive",
+      });
     }
 
     if (state.status == "success") {
+      revalidateProject(project.slug).then(() => {
+        router.refresh();
+        toast({ description: "Gradient updated successfully" });
+      });
     }
   }, [state]);
 
