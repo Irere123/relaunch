@@ -13,6 +13,7 @@
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.0",
     "@conform-to/zod": "^1.2.2",
+    "@headlessui/tailwindcss": "^0.2.1",
     "@hookform/resolvers": "^3.9.1",
     "@libsql/client": "^0.14.0",
     "@radix-ui/react-avatar": "^1.1.1",

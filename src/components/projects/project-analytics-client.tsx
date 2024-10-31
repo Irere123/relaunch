@@ -1,15 +1,7 @@
 "use client";
 
-import { EventProps } from "@tremor/react";
-import dynamic from "next/dynamic";
+import { EventProps, AreaChart } from "@tremor/react";
 import { useEffect, useState } from "react";
-
-const AreaChart = dynamic(
-  () => import("@tremor/react").then((mod) => mod.AreaChart),
-  {
-    ssr: false,
-  }
-);
 
 const chartdata = [
   {
