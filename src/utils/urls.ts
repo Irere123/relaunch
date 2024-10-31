@@ -19,7 +19,7 @@ export const getUrlFromString = (str: string) => {
 
 export const getSearchParams = (url: string) => {
   // Create a params object
-  let params = {} as Record<string, string>;
+  const params = {} as Record<string, string>;
 
   new URL(url).searchParams.forEach(function (val, key) {
     params[key] = val;
@@ -29,7 +29,7 @@ export const getSearchParams = (url: string) => {
 };
 
 export const getSearchParamsWithArray = (url: string) => {
-  let params = {} as Record<string, string | string[]>;
+  const params = {} as Record<string, string | string[]>;
 
   new URL(url).searchParams.forEach(function (val, key) {
     if (key in params) {
