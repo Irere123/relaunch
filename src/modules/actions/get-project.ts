@@ -2,8 +2,15 @@ import { eq, or } from "drizzle-orm";
 import { cache } from "react";
 
 import { db } from "@/db";
-import { links, projects, projectTeam } from "@/db/schema";
-import { Link, Project, ProjectContrib } from "@/types";
+import {
+  links,
+  LinkSelect,
+  Project,
+  projects,
+  ProjectTeam,
+  projectTeam,
+} from "@/db/schema";
+import { Link, Project as ExtentedProject, ProjectContrib } from "@/types";
 
 export const getProject = cache(
   async ({
@@ -12,28 +19,51 @@ export const getProject = cache(
   }: {
     slug?: string;
     id?: string;
-  }): Promise<Project | null> => {
-    const [result] = await db
+  }): Promise<ExtentedProject | null> => {
+    const conditions = [];
+    if (id) conditions.push(eq(projects.id, id));
+    if (slug) conditions.push(eq(projects.slug, slug));
+
+    const rows = await db
       .select()
       .from(projects)
-      .where(or(eq(projects.id, id || ""), eq(projects.slug, slug || "")))
-      .leftJoin(links, eq(links.projectId, projects.id))
-      .leftJoin(projectTeam, eq(projectTeam.projectId, projects.id))
+      .where(or(...conditions))
+      .leftJoin(links, eq(projects.id, links.projectId))
+      .leftJoin(projectTeam, eq(projects.id, projectTeam.projectId))
       .limit(1);
 
-    console.log(result);
+    if (rows.length === 0) return null;
 
-    if (!result) return null;
+    const result = rows.reduce<
+      Record<
+        string,
+        { project: Project; links: LinkSelect[]; projectTeam: ProjectTeam[] }
+      >
+    >((acc, row) => {
+      const project = row.project;
+      const link = row.link;
+      const teamMember = row.project_team;
 
-    // const githubLink = result.links.find((link: Link) => link.type == "GITHUB");
-    // const websiteLink = result.links.find(
-    //   (link: Link) => link.type == "GITHUB"
-    // );
+      if (!acc[project.id]) {
+        acc[project.id] = { project, links: [], projectTeam: [] };
+      }
+
+      if (link) {
+        acc[project.id].links.push(link);
+      }
+
+      if (teamMember) {
+        acc[project.id].projectTeam.push(teamMember);
+      }
+      return acc;
+    }, {});
+
+    const projectData = result[Object.keys(result)[0]];
 
     return {
-      ...result.project,
-      links: result.link as unknown as Link[],
-      team: result.project_team as unknown as ProjectContrib[],
+      ...(projectData.project as Project),
+      links: projectData.links as Link[],
+      team: projectData.projectTeam as unknown as ProjectContrib[],
       websiteLink: "",
       githubLink: "",
     };

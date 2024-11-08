@@ -11,6 +11,7 @@ import { redirect } from "next/navigation";
 const schema = z.object({
   name: z.string(),
   description: z.string(),
+  logo: z.string().url(),
 });
 
 export async function createProject(_prevState: unknown, formData: FormData) {

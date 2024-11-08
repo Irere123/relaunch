@@ -42,6 +42,11 @@ export const CreateProjectForm = () => {
       <Input placeholder="Add title" name="name" />
       <Label>Description</Label>
       <Textarea placeholder="Add description" rows={5} name="description" />
+      <Label>Logo URL</Label>
+      <Input
+        placeholder="https://relaunch-dev.vercel.app/logo.png"
+        name="logo"
+      />
       {state.error && <p>{state.error}</p>}
       <div className="flex justify-end space-x-4">
         <Button variant={"ghost"} onClick={() => router.push("/dashboard")}>

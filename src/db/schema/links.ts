@@ -10,3 +10,5 @@ export const links = sqliteTable("link", {
   url: text("url"),
   projectId: text("project_id").references(() => projects.id),
 });
+
+export type LinkSelect = typeof links.$inferSelect;

@@ -53,3 +53,4 @@ export const projectTeam = sqliteTable("project_team", {
 });
 
 export type Project = typeof projects.$inferSelect;
+export type ProjectTeam = typeof projectTeam.$inferSelect;
