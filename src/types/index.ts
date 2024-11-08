@@ -7,9 +7,14 @@ export type User = {
 export type ProjectBase = {
   id: string;
   name: string;
+  slug: string;
+  userId: string | null;
   description: string;
-  stars: number;
-  clicks: number;
+  gradient: string | null;
+  likes: number | null;
+  clicks: number | null;
+  logo: string | null;
+  image: string | null;
 };
 
 export type Link = {
@@ -24,5 +29,5 @@ export interface Project extends ProjectBase {
   links: Link[];
   githubLink: string;
   websiteLink: string;
-  team: ProjectContrib
+  team: ProjectContrib[];
 }

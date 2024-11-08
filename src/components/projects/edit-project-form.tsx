@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Project } from "@/db/schema";
+import { Project } from "@/types";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import {
   Dispatch,

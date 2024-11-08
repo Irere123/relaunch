@@ -1,8 +1,8 @@
 "use client";
 
-import { Project } from "@/db/schema";
 import { createContext, Dispatch, SetStateAction } from "react";
 import { useEditProjectModal } from "./edit-project-modal";
+import { Project } from "@/types";
 
 export const ProjectContext = createContext<{
   props: Project;

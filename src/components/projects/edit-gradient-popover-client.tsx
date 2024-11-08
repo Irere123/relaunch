@@ -5,7 +5,7 @@ import { Check, Edit2 } from "lucide-react";
 import { useActionState, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { Project } from "@/db/schema";
+import { Project } from "@/types";
 import { Popover } from "../ui/popover";
 import { cn } from "@/lib/utils";
 import { buttonLinkVariants } from "../ui/button-link";

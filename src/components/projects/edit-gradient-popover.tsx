@@ -1,4 +1,4 @@
-import { Project } from "@/db/schema";
+import { Project } from "@/types";
 import { auth } from "@/modules/auth";
 import { EditGradientPopoverClient } from "./edit-gradient-popover-client";
 
@@ -7,7 +7,10 @@ export async function EditGradientPopover({ project }: { project: Project }) {
 
   if (!session) return null;
 
-  if (project.userId === session.user?.id) {
+  if (
+    project.team.some((member) => member.id === session.user?.id) ||
+    project.userId === session.user?.id
+  ) {
     return (
       <div className="absolute bottom-2 right-2 z-10">
         <EditGradientPopoverClient project={project} />

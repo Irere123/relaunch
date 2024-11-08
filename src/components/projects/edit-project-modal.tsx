@@ -1,6 +1,6 @@
 "use client";
 
-import { Project } from "@/db/schema";
+import { Project } from "@/types";
 import { Modal } from "../ui/modal";
 import {
   Dispatch,

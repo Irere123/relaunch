@@ -1,4 +1,4 @@
-import { Project } from "@/db/schema";
+import { Project } from "@/types";
 import { auth } from "@/modules/auth";
 import { EditProjectButtonClient } from "./edit-project-button-client";
 

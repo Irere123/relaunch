@@ -4,7 +4,7 @@ import { parseWithZod } from "@conform-to/zod";
 import { z } from "zod";
 
 import { db } from "@/db";
-import { projects } from "@/db/schema";
+import { projects, projectTeam } from "@/db/schema";
 import { auth } from "@/modules/auth";
 import { redirect } from "next/navigation";
 
@@ -36,6 +36,10 @@ export async function createProject(_prevState: unknown, formData: FormData) {
         userId: session.user?.id,
       })
       .returning();
+
+    await db
+      .insert(projectTeam)
+      .values({ projectId: project.id, userId: session.user.id });
   } catch (error: any) {
     if (error.message.includes("UNIQUE constraint")) {
       return { error: "Project name already in taken." };
