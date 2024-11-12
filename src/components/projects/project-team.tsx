@@ -1,12 +1,17 @@
+import Link from "next/link";
+
 import { cn } from "@/lib/utils";
 import { Project } from "@/types";
-import Link from "next/link";
+import { EditTeamButton } from "./edit-team-button";
 
 export function ProjectTeam({ project }: { project: Project }) {
   const { team } = project;
 
   return (
     <>
+      <div className="absolute right-4 top-4">
+        <EditTeamButton project={project} />
+      </div>
       <div
         className={cn(
           "mx-auto grid max-w-md grid-cols-1 gap-4",

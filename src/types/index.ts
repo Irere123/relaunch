@@ -2,6 +2,7 @@ export type User = {
   id: string;
   name: string;
   image: string;
+  emailVerified: boolean;
 };
 
 export type ProjectBase = {

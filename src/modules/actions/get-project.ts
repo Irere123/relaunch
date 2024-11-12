@@ -30,7 +30,7 @@ export const getProject = cache(
         project: { ...projects },
         link: { ...links },
         project_team: {
-          id: projectTeam.id,
+          id: users.id,
           name: users.name,
           image: users.image,
         },

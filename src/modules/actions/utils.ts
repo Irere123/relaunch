@@ -37,3 +37,9 @@ export const editProjectSchema = z.object({
     .refine((l) => isValidUrl(l), { message: "Invalid Website URL" }),
   projectId: z.string().min(8),
 });
+
+export const editTeamSchema = z.object({
+  projectId: z.string().min(1).max(64),
+});
+
+export const selectUserSchema = z.object({ name: z.string().min(1).max(64) });
