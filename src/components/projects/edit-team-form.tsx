@@ -1,26 +1,33 @@
 "use client";
 
-import { Project, User } from "@/types";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { LoadingSpinner } from "../icons";
+import {
+  Dispatch,
+  SetStateAction,
+  useActionState,
+  useEffect,
+  useState,
+} from "react";
+import { useFormStatus } from "react-dom";
 import { AlertCircle, CornerDownLeft, X } from "lucide-react";
-import { Button } from "../ui/button";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+import { Project, User } from "@/types";
 import {
   editTeamSchema,
   FormResponse,
   selectUserSchema,
 } from "@/modules/actions/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { selectTeamMember } from "@/modules/actions/select-team-member";
 import { cn } from "@/lib/utils";
-import { buttonLinkVariants } from "../ui/button-link";
-import { useRouter } from "next/navigation";
 import { editTeam } from "@/modules/actions/edit-team";
 import { toast } from "@/hooks/use-toast";
 import { revalidateProject } from "@/modules/actions/revalidate-project";
+import { LoadingSpinner } from "../icons";
+import { Button } from "../ui/button";
+import { buttonLinkVariants } from "../ui/button-link";
 
 export function EditTeamForm({
   props,
@@ -41,7 +48,7 @@ export function EditTeamForm({
     resolver: zodResolver(selectUserSchema),
   });
 
-  const [state, formAction] = useFormState<
+  const [state, formAction] = useActionState<
     (FormResponse & { user?: User }) | null,
     FormData
   >(selectTeamMember, null);
@@ -136,6 +143,11 @@ export function EditTeamForm({
           </div>
         ))}
       </div>
+      <EditTeamFormPseudo
+        setShowEditTeamModal={setShowEditTeamModal}
+        project={props}
+        users={users}
+      />
     </div>
   );
 }
@@ -173,7 +185,7 @@ const EditTeamFormPseudo = ({
 
   const edtiTeamWithUsers = editTeam.bind(null, users);
 
-  const [state, formAction] = useFormState<FormResponse, FormData>(
+  const [state, formAction] = useActionState<FormResponse, FormData>(
     edtiTeamWithUsers,
     null
   );
