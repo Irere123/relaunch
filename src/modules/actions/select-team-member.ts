@@ -5,7 +5,7 @@ import { FormResponse, selectUserSchema } from "./utils";
 import { authUser } from "./auth";
 import { db } from "@/db";
 import { users } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { eq, ilike, or } from "drizzle-orm";
 import { ZodError } from "zod";
 
 export async function selectTeamMember(
@@ -20,7 +20,7 @@ export async function selectTeamMember(
     const [user] = await db
       .select()
       .from(users)
-      .where(eq(users.name, name))
+      .where(or(eq(users.name, name), ilike(users.email, `%${name}%`)))
       .limit(1);
 
     if (!user) {

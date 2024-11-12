@@ -77,7 +77,7 @@ export function EditTeamForm({
   }, [state]);
 
   return (
-    <div className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 md:px-16">
+    <div className="flex flex-col space-y-4 py-8">
       <form action={formAction}>
         <div className="relative">
           <input
@@ -206,7 +206,7 @@ const EditTeamFormPseudo = ({
         toast({ description: "Project updated successfully" });
       });
     }
-  });
+  }, [state]);
 
   return (
     <form action={formAction}>
@@ -223,5 +223,9 @@ const EditTeamFormPseudo = ({
 
 const FormButton = () => {
   const { pending } = useFormStatus();
-  return <Button disabled={pending}>Save changes</Button>;
+  return (
+    <Button disabled={pending} type="submit">
+      Save changes
+    </Button>
+  );
 };
