@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:migrate": "drizzle-kit migrate",
-    "db:gen": "drizzle-kit generate"
+    "db:migrate": "drizzle-kit migrate --config drizzle.config.ts",
+    "db:gen": "drizzle-kit generate --config drizzle.config.ts", 
+    "db:studio": "drizzle-kit studio --port 4000 --verbose  --config drizzle.config.ts" 
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.0",

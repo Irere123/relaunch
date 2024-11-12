@@ -21,6 +21,8 @@ import {
   selectUserSchema,
 } from "@/modules/actions/utils";
 import { selectTeamMember } from "@/modules/actions/select-team-member";
+
+
 import { cn } from "@/lib/utils";
 import { editTeam } from "@/modules/actions/edit-team";
 import { toast } from "@/hooks/use-toast";
@@ -28,6 +30,7 @@ import { revalidateProject } from "@/modules/actions/revalidate-project";
 import { LoadingSpinner } from "../icons";
 import { Button } from "../ui/button";
 import { buttonLinkVariants } from "../ui/button-link";
+import { Input } from "../ui/input";
 
 export function EditTeamForm({
   props,
@@ -80,7 +83,7 @@ export function EditTeamForm({
     <div className="flex flex-col space-y-4 py-8">
       <form action={formAction}>
         <div className="relative">
-          <input
+          <Input
             {...register("name")}
             required
             autoFocus
