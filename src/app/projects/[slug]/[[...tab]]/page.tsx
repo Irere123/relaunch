@@ -1,4 +1,5 @@
 import { ProductAnalytics } from "@/components/projects/project-analytics";
+import { ProjectTeam } from "@/components/projects/project-team";
 import { getProject } from "@/modules/actions";
 import { notFound } from "next/navigation";
 
@@ -24,11 +25,7 @@ export default async function ProjectPage(props: {
   }
 
   if (tab?.[0] === "team") {
-    return (
-      <div>
-        <p>Team for project</p>
-      </div>
-    );
+    return <ProjectTeam project={project} />;
   }
 
   if (tab?.[0] === "reviews") {

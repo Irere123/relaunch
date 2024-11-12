@@ -9,6 +9,7 @@ import {
   projects,
   ProjectTeam,
   projectTeam,
+  users,
 } from "@/db/schema";
 import { Link, Project as ExtentedProject, ProjectContrib } from "@/types";
 
@@ -25,9 +26,18 @@ export const getProject = cache(
     if (slug) conditions.push(eq(projects.slug, slug));
 
     const rows = await db
-      .select()
+      .select({
+        project: { ...projects },
+        link: { ...links },
+        project_team: {
+          id: projectTeam.id,
+          name: users.name,
+          image: users.image,
+        },
+      })
       .from(projects)
       .where(or(...conditions))
+      .innerJoin(users, eq(projectTeam.userId, users.id))
       .leftJoin(links, eq(projects.id, links.projectId))
       .leftJoin(projectTeam, eq(projects.id, projectTeam.projectId))
       .limit(1);
@@ -37,7 +47,7 @@ export const getProject = cache(
     const result = rows.reduce<
       Record<
         string,
-        { project: Project; links: LinkSelect[]; projectTeam: ProjectTeam[] }
+        { project: Project; links: LinkSelect[]; projectTeam: any[] }
       >
     >((acc, row) => {
       const project = row.project;
@@ -60,12 +70,19 @@ export const getProject = cache(
 
     const projectData = result[Object.keys(result)[0]];
 
+    const githubLink = projectData.links.find(
+      (link) => link.type === "GITHUB"
+    )!;
+    const websiteLink = projectData.links.find(
+      (link) => link.type === "WEBSITE"
+    );
+
     return {
       ...(projectData.project as Project),
       links: projectData.links as Link[],
       team: projectData.projectTeam as unknown as ProjectContrib[],
-      websiteLink: "",
-      githubLink: "",
+      websiteLink,
+      githubLink,
     };
   }
 );

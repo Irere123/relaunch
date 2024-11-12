@@ -1,5 +1,5 @@
 import { getProject } from "@/modules/actions";
-import { Eye } from "lucide-react";
+import { Eye, Globe } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -75,7 +75,7 @@ export default async function ProjectLayout(props: {
         </div>
         <div className="relative -mt-8 flex items-center justify-between px-4 sm:-mt-12 sm:items-end md:pr-0">
           <Image
-            src={"/relaunch.svg"}
+            src={project.logo || "/relaunch.svg"}
             alt={""}
             width={100}
             height={100}
@@ -87,6 +87,16 @@ export default async function ProjectLayout(props: {
             </Suspense>
             <Clicks clicks={project.clicks as number} id={project.id} />
           </div>
+          {project.websiteLink && (
+            <a
+              href={project.websiteLink.url as string}
+              target="_blank"
+              className={buttonLinkVariants()}
+            >
+              <Globe className="h-4 w-4" />
+              <p className="text-sm">Website</p>
+            </a>
+          )}
         </div>
         <div className="max-w-lg p-4 pb-0">
           <div className="flex items-center space-x-2">

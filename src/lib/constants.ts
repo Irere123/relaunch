@@ -17,3 +17,5 @@ export const PROJECT_GRADIENTS = [
   "from-rose-100 via-rose-50 to-rose-200",
   "from-cyan-100 via-cyan-50 to-cyan-200",
 ];
+
+export const isProd = process.env.NODE_ENV === "production";

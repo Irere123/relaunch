@@ -19,15 +19,16 @@ export type ProjectBase = {
 
 export type Link = {
   id: string;
-  type: string;
-  url: string;
+  type: string | null;
+  url: string | null;
+  projectId: string | null;
 };
 
 export type ProjectContrib = User;
 
 export interface Project extends ProjectBase {
   links: Link[];
-  githubLink: string;
-  websiteLink: string;
+  githubLink: Link;
+  websiteLink: Link | undefined;
   team: ProjectContrib[];
 }
