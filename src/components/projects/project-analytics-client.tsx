@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, AreaChart, Title } from "@tremor/react";
+import { AreaChart } from "@tremor/react";
 
 export function ProjectAnalyticsClient() {
   // Sample data - replace with your actual data
@@ -13,8 +13,7 @@ export function ProjectAnalyticsClient() {
   ];
 
   return (
-    <Card className="mt-4">
-      <Title>Project Analytics</Title>
+    <div className="mt-4 w-full h-full">
       <AreaChart
         className="h-72 mt-4"
         data={chartdata}
@@ -22,6 +21,6 @@ export function ProjectAnalyticsClient() {
         categories={["Views"]}
         colors={["blue"]}
       />
-    </Card>
+    </div>
   );
 }

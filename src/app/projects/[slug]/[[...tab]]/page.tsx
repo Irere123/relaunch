@@ -1,4 +1,4 @@
-import { ProductAnalytics } from "@/components/projects/project-analytics";
+import { ProjectAnalytics } from "@/components/projects/project-analytics";
 import { ProjectTeam } from "@/components/projects/project-team";
 import { getProject } from "@/modules/actions";
 import { notFound } from "next/navigation";
@@ -36,5 +36,5 @@ export default async function ProjectPage(props: {
     );
   }
 
-  return <ProductAnalytics />;
+  return <ProjectAnalytics />;
 }
