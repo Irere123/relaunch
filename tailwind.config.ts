@@ -210,6 +210,6 @@ const config: Config = {
         /^from-(red|orange|yellow|green|cyan|blue|indigo|violet|purple|pink|neutral|grey)-[1-9]00$/,
     },
   ],
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tremor/react/plugin")],
 };
 export default config;

@@ -1,5 +1,5 @@
-import { ProductAnalyticsClient } from "./project-analytics-client";
+import { ProjectAnalyticsClient } from "./project-analytics-client";
 
-export function ProductAnalytics() {
-  return <ProductAnalyticsClient />;
+export function ProjectAnalytics() {
+  return <ProjectAnalyticsClient />;
 }
