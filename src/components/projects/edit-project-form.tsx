@@ -20,6 +20,7 @@ import { editProject } from "@/modules/actions/edit-project";
 import { revalidateProject } from "@/modules/actions/revalidate-project";
 import { toast } from "@/hooks/use-toast";
 import { AlertCircle } from "lucide-react";
+import { Input } from "../ui/input";
 
 export default function EditProjectForm({
   props,
@@ -70,12 +71,12 @@ export default function EditProjectForm({
   return (
     <form
       action={formAction}
-      className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 w-full"
+      className="flex flex-col space-y-4 px-4 py-8 w-full"
     >
       <label htmlFor="name">
         <span className="text-sm font-medium text-gray-900">Project name</span>
         <div className="relative mt-1">
-          <input
+          <Input
             {...register("name")}
             autoFocus={!isMobile}
             required
@@ -112,7 +113,7 @@ export default function EditProjectForm({
           Project description
         </span>
         <div className="relative mt-1">
-          <input
+          <Input
             {...register("description")}
             required
             defaultValue={props.description}
@@ -150,7 +151,7 @@ export default function EditProjectForm({
           Project Logo URL
         </span>
         <div className="relative mt-1">
-          <input
+          <Input
             {...register("logo")}
             required
             defaultValue={props.logo as string}
@@ -186,7 +187,7 @@ export default function EditProjectForm({
           Project Website
         </span>
         <div className="relative mt-1">
-          <input
+          <Input
             {...register("website")}
             required
             defaultValue={""}
