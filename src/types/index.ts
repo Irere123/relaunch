@@ -1,8 +1,8 @@
 export type User = {
   id: string;
-  name: string;
-  image: string;
-  emailVerified: boolean;
+  name: string | null;
+  image: string | null;
+  emailVerified: Date | null;
 };
 
 export type ProjectBase = {

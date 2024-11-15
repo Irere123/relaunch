@@ -22,7 +22,6 @@ import {
 } from "@/modules/actions/utils";
 import { selectTeamMember } from "@/modules/actions/select-team-member";
 
-
 import { cn } from "@/lib/utils";
 import { editTeam } from "@/modules/actions/edit-team";
 import { toast } from "@/hooks/use-toast";
@@ -52,9 +51,9 @@ export function EditTeamForm({
   });
 
   const [state, formAction] = useActionState<
-    (FormResponse & { user?: User }) | null,
+    FormResponse & { user?: User },
     FormData
-  >(selectTeamMember, null);
+  >(selectTeamMember, null as any);
 
   useEffect(() => {
     if (!state) {
@@ -63,7 +62,9 @@ export function EditTeamForm({
 
     if (state.status === "error") {
       state.errors?.forEach((error) => {
-        setError(error.path as keyof typeof errors, { message: error.message });
+        setError(error.path as keyof typeof errors, {
+          message: error.message,
+        });
       });
     }
 
@@ -73,21 +74,21 @@ export function EditTeamForm({
         if (prev.some((user) => user.id === foundUser.id)) {
           return prev;
         }
-
-        return [...prev, { ...foundUser }];
+        return [...prev, { ...foundUser, role: "Member" }];
       });
     }
   }, [state]);
 
   return (
-    <div className="flex flex-col space-y-4 py-8">
+    <div className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 md:px-16">
       <form action={formAction}>
         <div className="relative">
-          <Input
+          <input
             {...register("name")}
             required
             autoFocus
             autoComplete="off"
+            data-1p-ignore
             placeholder="Search for a user"
             className={`${
               errors.name
@@ -124,7 +125,7 @@ export function EditTeamForm({
             className="group relative flex items-center space-x-3 p-2"
           >
             <img
-              src={user.image}
+              src={user.image as string}
               alt="avatar"
               className="h-10 w-10 rounded-full"
             />
@@ -147,9 +148,9 @@ export function EditTeamForm({
         ))}
       </div>
       <EditTeamFormPseudo
-        setShowEditTeamModal={setShowEditTeamModal}
-        project={props}
         users={users}
+        project={props}
+        setShowEditTeamModal={setShowEditTeamModal}
       />
     </div>
   );
@@ -172,9 +173,9 @@ const LoadingInput = () => {
 };
 
 const EditTeamFormPseudo = ({
+  users,
   project,
   setShowEditTeamModal,
-  users,
 }: {
   users: Project["team"];
   project: Project;
@@ -186,10 +187,10 @@ const EditTeamFormPseudo = ({
     resolver: zodResolver(editTeamSchema),
   });
 
-  const edtiTeamWithUsers = editTeam.bind(null, users);
+  const editTeamWithUsers = editTeam.bind(null, users);
 
   const [state, formAction] = useActionState<FormResponse, FormData>(
-    edtiTeamWithUsers,
+    editTeamWithUsers,
     null
   );
 

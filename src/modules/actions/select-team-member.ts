@@ -5,7 +5,7 @@ import { FormResponse, selectUserSchema } from "./utils";
 import { authUser } from "./auth";
 import { db } from "@/db";
 import { users } from "@/db/schema";
-import { eq, ilike, or } from "drizzle-orm";
+import { eq, ilike, or, sql } from "drizzle-orm";
 import { ZodError } from "zod";
 
 export async function selectTeamMember(
@@ -20,19 +20,23 @@ export async function selectTeamMember(
     const [user] = await db
       .select()
       .from(users)
-      .where(or(eq(users.name, name), ilike(users.email, `%${name}%`)))
+      .where(eq(users.name, name))
       .limit(1);
 
     if (!user) {
       throw new ZodError([
-        { path: ["username"], code: "custom", message: "User not found" },
+        {
+          path: ["name"],
+          code: "custom",
+          message: "User not found",
+        },
       ]);
     }
 
     return {
       status: "success",
       message: "User found",
-      user: user as unknown as User,
+      user,
     };
   } catch (error) {
     if (error instanceof ZodError) {
