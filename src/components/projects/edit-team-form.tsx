@@ -80,10 +80,10 @@ export function EditTeamForm({
   }, [state]);
 
   return (
-    <div className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 md:px-16">
+    <div className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 md:px-16 w-full">
       <form action={formAction}>
         <div className="relative">
-          <input
+          <Input
             {...register("name")}
             required
             autoFocus

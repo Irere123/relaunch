@@ -11,11 +11,11 @@ export default function ProjectLayoutTabs() {
 
   return (
     <div className="my-4 flex flex-col space-y-6 p-4">
-      <div className="flex max-w-fit items-center rounded-md bg-muted">
+      <div className="flex max-w-fit items-center rounded-full bg-gray-100">
         <TabLink
           title="Analytics"
           href={`/projects/${slug}`}
-          active={tab?.[0] === slug}
+          active={!tab || tab.length === 0}
         />
         {PROJECT_TABS.map((t) => (
           <TabLink
@@ -44,7 +44,7 @@ export const TabLink = ({
       <div
         className={cn(
           "rounded-full px-4 py-1.5 text-sm font-medium text-gray-800 transition-all",
-          active ? "text-white" : "hover:text-gray-500"
+          active ? "text-white" : "hover:text-gray-500",
         )}
       >
         {title}
