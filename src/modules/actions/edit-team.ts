@@ -32,7 +32,10 @@ export async function editTeam(
           .update(projectTeam)
           .set({ userId: user.id })
           .where(
-            and(eq(projectTeam.userId, user.id), eq(projects.id, projectId))
+            and(
+              eq(projectTeam.userId, user.id),
+              eq(projectTeam.projectId, projectId)
+            )
           )
       ),
     ]);
