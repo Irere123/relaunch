@@ -1,8 +1,8 @@
 "use client";
 
-import { useFormStatus } from "react-dom";
+import { useFormStatus, useFormState } from "react-dom";
 import { Check, Edit2 } from "lucide-react";
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { Project } from "@/types";
@@ -43,7 +43,7 @@ export function EditGradientPopoverClient({ project }: { project: Project }) {
 
 const EditGradientForm = ({ project }: { project: Project }) => {
   const router = useRouter();
-  const [state, formAction] = useActionState<FormResponse, FormData>(
+  const [state, formAction] = useFormState<FormResponse, FormData>(
     editGradient,
     null
   );

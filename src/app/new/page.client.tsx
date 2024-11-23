@@ -1,9 +1,9 @@
 "use client";
-import { useFormStatus } from "react-dom";
+import { useFormStatus, useFormState } from "react-dom";
 
 import { createProject } from "./actions";
 import { useRouter } from "next/navigation";
-import { useActionState, useEffect } from "react";
+import { useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/text-area";
 import { toast } from "@/hooks/use-toast";
@@ -15,7 +15,7 @@ const initialState = {
 };
 
 export const CreateProjectForm = () => {
-  const [state, formAction] = useActionState(createProject, initialState);
+  const [state, formAction] = useFormState(createProject, initialState);
   const { pending } = useFormStatus();
 
   const router = useRouter();

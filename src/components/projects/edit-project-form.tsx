@@ -1,19 +1,13 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useFormStatus } from "react-dom";
+import { useFormStatus, useFormState } from "react-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Project } from "@/types";
 import { useMediaQuery } from "@/hooks/use-media-query";
-import {
-  Dispatch,
-  SetStateAction,
-  useActionState,
-  useEffect,
-  useRef,
-} from "react";
+import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 import { Button } from "../ui/button";
 import { editProjectSchema, FormResponse } from "@/modules/actions/utils";
 import { editProject } from "@/modules/actions/edit-project";
@@ -43,7 +37,7 @@ export default function EditProjectForm({
     resolver: zodResolver(editProjectSchema),
   });
 
-  const [state, formAction] = useActionState<FormResponse, FormData>(
+  const [state, formAction] = useFormState<FormResponse, FormData>(
     editProject,
     null
   );

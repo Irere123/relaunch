@@ -1,13 +1,7 @@
 "use client";
 
-import {
-  Dispatch,
-  SetStateAction,
-  useActionState,
-  useEffect,
-  useState,
-} from "react";
-import { useFormStatus } from "react-dom";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useFormStatus, useFormState } from "react-dom";
 import { AlertCircle, CornerDownLeft, X } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -50,7 +44,7 @@ export function EditTeamForm({
     resolver: zodResolver(selectUserSchema),
   });
 
-  const [state, formAction] = useActionState<
+  const [state, formAction] = useFormState<
     FormResponse & { user?: User },
     FormData
   >(selectTeamMember, null as any);
@@ -189,7 +183,7 @@ const EditTeamFormPseudo = ({
 
   const editTeamWithUsers = editTeam.bind(null, users);
 
-  const [state, formAction] = useActionState<FormResponse, FormData>(
+  const [state, formAction] = useFormState<FormResponse, FormData>(
     editTeamWithUsers,
     null
   );
