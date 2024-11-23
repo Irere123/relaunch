@@ -36,10 +36,10 @@ export const getProject = cache(
         },
       })
       .from(projects)
-      .where(or(...conditions))
-      .innerJoin(users, eq(projectTeam.userId, users.id))
-      .leftJoin(links, eq(projects.id, links.projectId))
-      .leftJoin(projectTeam, eq(projects.id, projectTeam.projectId))
+      .leftJoin(projectTeam, eq(projects.id, projectTeam.projectId)) // Join projectTeam first
+      .leftJoin(users, eq(projectTeam.userId, users.id)) // Then join users
+      .leftJoin(links, eq(projects.id, links.projectId)) // Finally join links
+      .where(or(...conditions)) // Apply conditions
       .limit(1);
 
     if (rows.length === 0) return null;
