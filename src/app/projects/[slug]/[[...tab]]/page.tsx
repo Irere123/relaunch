@@ -1,7 +1,9 @@
+import { notFound } from "next/navigation";
+
 import { ProjectAnalytics } from "@/components/projects/project-analytics";
+import { ProjectReviews } from "@/components/projects/project-reviews";
 import { ProjectTeam } from "@/components/projects/project-team";
 import { getProject } from "@/modules/actions";
-import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   return [
@@ -29,11 +31,7 @@ export default async function ProjectPage(props: {
   }
 
   if (tab?.[0] === "reviews") {
-    return (
-      <div>
-        <p>Project reviews</p>
-      </div>
-    );
+    return <ProjectReviews />;
   }
 
   return <ProjectAnalytics />;

@@ -1,19 +1,37 @@
 "use client";
 
-import { nFormatter } from "@/lib/utils";
-import { AreaChart } from "@tremor/react";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { buttonLinkVariants } from "../ui/button-link";
 import { LoadingSpinner } from "../icons";
 import { RefreshCcw } from "lucide-react";
+import { AreaChart } from "../ui/area-chart";
 
-const chartData = [
+const chartdata = [
   {
     date: "Jan 22",
-    Views: 2890,
+    SolarPanels: 2890,
+    Inverters: 2338,
+  },
+  {
+    date: "Feb 22",
+    SolarPanels: 2756,
+    Inverters: 2103,
+  },
+  {
+    date: "Mar 22",
+    SolarPanels: 3322,
+    Inverters: 2194,
+  },
+  {
+    date: "Apr 22",
+    SolarPanels: 3470,
+    Inverters: 2108,
   },
 ];
+
+const dataFormatter = (num: number) =>
+  `$${Intl.NumberFormat("us").format(num).toString()}`;
 
 export function ProjectAnalyticsClient() {
   const router = useRouter();
@@ -41,16 +59,13 @@ export function ProjectAnalyticsClient() {
         </button>
       </div>
       <AreaChart
-        className="-ml-4 h-80"
-        data={chartData}
-        index="start"
-        categories={["Views"]}
-        colors={["rose", "blue"]}
-        valueFormatter={nFormatter}
-        yAxisWidth={60}
-        startEndOnly={true}
-        showAnimation
-        onValueChange={(v) => console.log(v)}
+        className="mt-4 h-72"
+        data={chartdata}
+        index="date"
+        yAxisWidth={65}
+        categories={["SolarPanels", "Inverters"]}
+        colors={["fuchsia", "cyan"]}
+        valueFormatter={dataFormatter}
       />
     </div>
   );
