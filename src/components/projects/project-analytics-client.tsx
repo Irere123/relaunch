@@ -31,7 +31,7 @@ const chartdata = [
 ];
 
 const dataFormatter = (num: number) =>
-  `$${Intl.NumberFormat("us").format(num).toString()}`;
+  `${Intl.NumberFormat("us").format(num).toString()}`;
 
 export function ProjectAnalyticsClient() {
   const router = useRouter();

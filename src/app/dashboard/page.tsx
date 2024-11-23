@@ -1,11 +1,16 @@
-import { DashboardLayout } from "@/components/layouts/DashboardLayout";
+import { ProjectClicksChart } from "@/components/dashboard/project-clicks-chart";
+import { ProjectSelect } from "@/components/dashboard/project-select";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+};
 
 export default async function DashboardPage() {
   return (
-    <DashboardLayout>
-      <div>
-        <p>Hello dashboard</p>
-      </div>
-    </DashboardLayout>
+    <div className="space-y-4">
+      <ProjectSelect />
+      <ProjectClicksChart />
+    </div>
   );
 }
