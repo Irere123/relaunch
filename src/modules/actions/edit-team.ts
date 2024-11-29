@@ -4,7 +4,7 @@ import { Project } from "@/types";
 import { editTeamSchema, FormResponse } from "./utils";
 import { authProject } from "./auth";
 import { db } from "@/db";
-import { projects, projectTeam } from "@/db/schema";
+import { projectTeam } from "@/db/schema";
 import { and, eq, inArray } from "drizzle-orm";
 import { ZodError } from "zod";
 
@@ -20,23 +20,42 @@ export async function editTeam(
 
     await authProject({ projectId });
 
+    const existingTeam = await db
+      .select()
+      .from(projectTeam)
+      .where(eq(projectTeam.projectId, projectId));
+
+    const existingUserIds = existingTeam.map((member) => member.userId);
+    const newUserIds = users.map((user) => user.id);
+
+    const usersToRemove = existingUserIds.filter(
+      (id) => id !== null && !newUserIds.includes(id)
+    );
+
+    const usersToAdd = newUserIds.filter(
+      (id) => id !== null && !existingUserIds.includes(id)
+    );
+
     await Promise.all([
-      db.delete(projectTeam).where(
-        inArray(
-          projectTeam.userId,
-          users.map((user) => user.id)
-        )
-      ),
-      ...Array.from(users).map((user) =>
-        db
-          .update(projectTeam)
-          .set({ userId: user.id })
-          .where(
-            and(
-              eq(projectTeam.userId, user.id),
-              eq(projectTeam.projectId, projectId)
+      usersToRemove.length > 0
+        ? db
+            .delete(projectTeam)
+            .where(
+              and(
+                eq(projectTeam.projectId, projectId),
+                inArray(
+                  projectTeam.userId,
+                  usersToRemove.filter(Boolean) as string[]
+                )
+              )
             )
-          )
+        : Promise.resolve(),
+
+      ...usersToAdd.map((userId) =>
+        db.insert(projectTeam).values({
+          projectId,
+          userId,
+        })
       ),
     ]);
 
