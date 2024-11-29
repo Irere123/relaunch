@@ -1,7 +1,8 @@
-import { sql } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 import { users } from "./users";
+import { links } from "./links";
 
 export const projects = sqliteTable("project", {
   id: text("id")
@@ -30,6 +31,12 @@ export const projects = sqliteTable("project", {
     .default(sql`(current_timestamp)`),
 });
 
+export const projectRelations = relations(projects, ({ many, one }) => ({
+  owner: one(users, { fields: [projects.userId], references: [users.id] }),
+  links: many(links),
+  projectTeam: many(projectTeam),
+}));
+
 export const projectReviews = sqliteTable("project_review", {
   id: text("id")
     .primaryKey()
@@ -51,6 +58,14 @@ export const projectTeam = sqliteTable("project_team", {
   projectId: text("project_id").references(() => projects.id),
   userId: text("user_id").references(() => users.id),
 });
+
+export const projectTeamRelations = relations(projectTeam, ({ one, many }) => ({
+  teamMember: many(users),
+  project: one(projects, {
+    fields: [projectTeam.projectId],
+    references: [projects.id],
+  }),
+}));
 
 export type Project = typeof projects.$inferSelect;
 export type ProjectTeam = typeof projectTeam.$inferSelect;
