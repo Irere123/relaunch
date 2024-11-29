@@ -10,23 +10,23 @@ import { AreaChart } from "../ui/area-chart";
 const chartdata = [
   {
     date: "Jan 22",
-    SolarPanels: 2890,
-    Inverters: 2338,
+    Reviews: 12,
+    Clicks: 10,
   },
   {
     date: "Feb 22",
-    SolarPanels: 2756,
-    Inverters: 2103,
+    Reviews: 7,
+    Clicks: 27,
   },
   {
     date: "Mar 22",
-    SolarPanels: 3322,
-    Inverters: 2194,
+    Reviews: 30,
+    Clicks: 11,
   },
   {
     date: "Apr 22",
-    SolarPanels: 3470,
-    Inverters: 2108,
+    Reviews: 20,
+    Clicks: 40,
   },
 ];
 
@@ -63,7 +63,7 @@ export function ProjectAnalyticsClient() {
         data={chartdata}
         index="date"
         yAxisWidth={65}
-        categories={["SolarPanels", "Inverters"]}
+        categories={["Clicks", "Reviews"]}
         colors={["fuchsia", "cyan"]}
         valueFormatter={dataFormatter}
       />
