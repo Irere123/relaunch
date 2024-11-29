@@ -19,7 +19,14 @@ export const getProject = cache(
 
     const project = await db.query.projects.findFirst({
       where: or(...conditions),
-      with: { links: true, projectTeam: true },
+      with: {
+        links: true,
+        projectTeam: {
+          with: {
+            member: true,
+          },
+        },
+      },
     });
 
     if (!project) return null;
@@ -30,7 +37,8 @@ export const getProject = cache(
     return {
       ...project,
       links: project.links as Link[],
-      team: project.projectTeam as unknown as ProjectContrib[],
+      team:
+        (project.projectTeam?.map((pt) => pt.member) as ProjectContrib[]) || [],
       websiteLink,
       githubLink,
     };

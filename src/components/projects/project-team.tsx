@@ -7,6 +7,8 @@ import { EditTeamButton } from "./edit-team-button";
 export function ProjectTeam({ project }: { project: Project }) {
   const { team } = project;
 
+  console.log(team);
+
   return (
     <>
       <div className="absolute right-4 top-4">
@@ -22,7 +24,7 @@ export function ProjectTeam({ project }: { project: Project }) {
           <div key={user.id} className="flex items-center space-x-4">
             <Link href={`/u/${user.id}`} className="flex-none">
               <img
-                src={user.image}
+                src={user.image as string}
                 alt="avatar"
                 className="h-14 w-14 rounded-full"
               />

@@ -33,7 +33,7 @@ export const projects = sqliteTable("project", {
 
 export const projectRelations = relations(projects, ({ many, one }) => ({
   owner: one(users, { fields: [projects.userId], references: [users.id] }),
-  links: many(links),
+  links: many(links, { relationName: "projectLink" }),
   projectTeam: many(projectTeam),
 }));
 
@@ -60,10 +60,13 @@ export const projectTeam = sqliteTable("project_team", {
 });
 
 export const projectTeamRelations = relations(projectTeam, ({ one, many }) => ({
-  teamMember: many(users),
   project: one(projects, {
     fields: [projectTeam.projectId],
     references: [projects.id],
+  }),
+  member: one(users, {
+    fields: [projectTeam.userId],
+    references: [users.id],
   }),
 }));
 

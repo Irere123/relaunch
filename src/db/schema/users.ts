@@ -1,3 +1,4 @@
+import { Many, relations } from "drizzle-orm";
 import {
   integer,
   sqliteTable,
@@ -5,6 +6,7 @@ import {
   primaryKey,
 } from "drizzle-orm/sqlite-core";
 import type { AdapterAccountType } from "next-auth/adapters";
+import { projectTeam } from "./projects";
 
 export const users = sqliteTable("user", {
   id: text("id")
@@ -15,6 +17,10 @@ export const users = sqliteTable("user", {
   emailVerified: integer("emailVerified", { mode: "timestamp_ms" }),
   image: text("image"),
 });
+
+export const usersRelations = relations(users, ({ many }) => ({
+  members: many(projectTeam),
+}));
 
 export const accounts = sqliteTable(
   "account",

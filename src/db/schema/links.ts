@@ -16,6 +16,7 @@ export const linkRelations = relations(links, ({ many, one }) => ({
   project: one(projects, {
     fields: [links.projectId],
     references: [projects.id],
+    relationName: "projectLink",
   }),
 }));
 
