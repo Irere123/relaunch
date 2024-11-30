@@ -43,6 +43,13 @@
       "when": 1729265356266,
       "tag": "0005_tidy_rumiko_fujikawa",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1732985667259,
+      "tag": "0006_closed_skin",
+      "breakpoints": true
     }
   ]
 }

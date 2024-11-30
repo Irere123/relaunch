@@ -31,6 +31,7 @@
     "@remixicon/react": "^4.4.0",
     "@sindresorhus/slugify": "^2.2.1",
     "@tremor/react": "^3.16.1",
+    "@vercel/edge": "^1.1.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
