@@ -7,8 +7,6 @@ import { EditTeamButton } from "./edit-team-button";
 export function ProjectTeam({ project }: { project: Project }) {
   const { team } = project;
 
-  console.log(team);
-
   return (
     <>
       <div className="absolute right-4 top-4">

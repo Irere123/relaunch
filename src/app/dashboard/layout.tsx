@@ -1,29 +1,32 @@
-"use client";
-
-import React, { useEffect } from "react";
-import { useSession } from "next-auth/react";
+import React from "react";
 
 import { Navbar } from "@/components/dashboard/navbar";
-import { useRouter } from "next/navigation";
+import { auth } from "@/modules/auth";
+import { redirect } from "next/navigation";
+import { getUserProjects } from "@/modules/actions/get-user-projects";
+import { DashboardProvider } from "@/components/dashboard/dashboard-provider";
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { data: session } = useSession();
-  const { push } = useRouter();
+  const session = await auth();
 
-  useEffect(() => {
-    if (!session?.user) {
-      push("/");
-    }
-  }, []);
+  if (!session?.user) {
+    redirect("/");
+  }
+
+  const projects = await getUserProjects({
+    userId: session?.user.id as string,
+  });
 
   return (
-    <div className="mx-auto min-h-screen w-full max-w-screen-md">
-      <Navbar />
-      <div className="py-6 md:px-6 px-4">{children}</div>
-    </div>
+    <DashboardProvider projects={projects}>
+      <div className="mx-auto min-h-screen w-full max-w-screen-md">
+        <Navbar />
+        <div className="py-6 md:px-6 px-4">{children}</div>
+      </div>
+    </DashboardProvider>
   );
 }

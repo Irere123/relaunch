@@ -1,17 +1,17 @@
 import { eq } from "drizzle-orm";
 
 import { db } from "@/db";
-import { Project, projects } from "@/db/schema";
+import { projects } from "@/db/schema";
+import { Project } from "@/types";
 
 export const getUserProjects = async ({
   userId,
 }: {
   userId: string;
 }): Promise<Project[]> => {
-  const result = await db
-    .select()
-    .from(projects)
-    .where(eq(projects.userId, userId));
+  const result = (await db.query.projects.findMany({
+    where: eq(projects.userId, userId),
+  })) as any;
 
   return result;
 };

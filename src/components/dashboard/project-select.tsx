@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronDown } from "lucide-react";
+import { useContext } from "react";
 
 import { Button } from "../ui/button";
 import {
@@ -9,20 +10,29 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { DashboardContext } from "./dashboard-provider";
 
 export const ProjectSelect: React.FC = () => {
+  const { projects, selectedProjectIndex, setSelectedProjectIndex } =
+    useContext(DashboardContext);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="default" className="gap-2">
-          Relaunch
+          {projects[selectedProjectIndex].name}
           <ChevronDown className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem>Reall</DropdownMenuItem>
-        <DropdownMenuItem>Spek</DropdownMenuItem>
-        <DropdownMenuItem>Swipe</DropdownMenuItem>
+        {projects.map((project, idx) => (
+          <DropdownMenuItem
+            key={project.id}
+            onClick={() => setSelectedProjectIndex(idx)}
+          >
+            {project.name}
+          </DropdownMenuItem>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );
