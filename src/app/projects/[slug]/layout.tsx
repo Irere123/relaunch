@@ -14,6 +14,7 @@ import incrementClicks from "@/modules/projects/incrementClicks";
 import { EditGradientPopover } from "@/components/projects/edit-gradient-popover";
 import { ProjectContextProvider } from "@/components/projects/project-provider";
 import { EditProjectButton } from "@/components/projects/edit-project-button";
+import { EdgeAnalytics } from "@/components/edge-analytics";
 
 export const revalidate = 43200;
 
@@ -62,6 +63,7 @@ export default async function ProjectLayout(props: {
 
   return (
     <ProjectContextProvider props={project}>
+      <EdgeAnalytics projectId={project.id} slug={project.slug} />
       <MainLayout>
         <div
           className={cn(

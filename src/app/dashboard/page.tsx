@@ -1,4 +1,4 @@
-import { ProjectClicksChart } from "@/components/dashboard/project-clicks-chart";
+import { ProjectStats } from "@/components/dashboard/project-stats";
 import { ProjectSelect } from "@/components/dashboard/project-select";
 import { Metadata } from "next";
 
@@ -10,7 +10,7 @@ export default async function DashboardPage() {
   return (
     <div className="space-y-4">
       <ProjectSelect />
-      <ProjectClicksChart />
+      <ProjectStats />
     </div>
   );
 }

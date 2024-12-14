@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { analytics } from "@/db/schema/analytics";
+import { analytics } from "@/db/schema";
 import { geolocation } from "@vercel/edge";
 
 export const runtime = "edge";
