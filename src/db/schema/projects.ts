@@ -3,6 +3,7 @@ import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 import { users } from "./users";
 import { links } from "./links";
+import { analytics } from "./analytics";
 
 export const projects = sqliteTable("project", {
   id: text("id")
@@ -35,6 +36,7 @@ export const projectRelations = relations(projects, ({ many, one }) => ({
   owner: one(users, { fields: [projects.userId], references: [users.id] }),
   links: many(links, { relationName: "projectLink" }),
   projectTeam: many(projectTeam),
+  analytics: many(analytics),
 }));
 
 export const projectTeam = sqliteTable("project_team", {

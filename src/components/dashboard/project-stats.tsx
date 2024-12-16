@@ -24,6 +24,8 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { useContext, useEffect } from "react";
+import { DashboardContext } from "./dashboard-provider";
 
 const chartData = [
   { month: "January", desktop: 186 },
@@ -41,6 +43,20 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function ProjectStats() {
+  const { projects, selectedProjectIndex } = useContext(DashboardContext);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const resp = await fetch(
+        `/api/analytics/visits?projectId=${projects[selectedProjectIndex].id}&slug=${projects[selectedProjectIndex].slug}`
+      );
+      const data = await resp.json();
+
+      console.log(data);
+    };
+
+    fetchData();
+  }, []);
   return (
     <div>
       <Card>

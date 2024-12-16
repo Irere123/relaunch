@@ -57,6 +57,13 @@
       "when": 1734161713170,
       "tag": "0007_goofy_logan",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1734364290516,
+      "tag": "0008_peaceful_invaders",
+      "breakpoints": true
     }
   ]
 }
