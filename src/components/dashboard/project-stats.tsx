@@ -25,7 +25,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { DashboardContext } from "./dashboard-provider";
 
 const chartData = [
@@ -38,8 +38,8 @@ const chartData = [
 ];
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
+  total: {
+    label: "Visitors",
   },
 } satisfies ChartConfig;
 
@@ -99,7 +99,7 @@ export function ProjectStats() {
             <CardDescription>Total in the last 7 days</CardDescription>
           </CardHeader>
           <CardContent>
-            <ChartContainer config={chartConfig}>
+            <ChartContainer config={{}}>
               <BarChart
                 accessibilityLayer
                 data={chartData}

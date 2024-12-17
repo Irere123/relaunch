@@ -16,6 +16,10 @@ export const ProjectSelect: React.FC = () => {
   const { projects, selectedProjectIndex, setSelectedProjectIndex } =
     useContext(DashboardContext);
 
+  if (projects.length === 0) {
+    return null;
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
