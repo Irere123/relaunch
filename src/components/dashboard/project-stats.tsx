@@ -47,12 +47,17 @@ export function ProjectStats() {
   const { projects, selectedProjectIndex: idx } = useContext(DashboardContext);
 
   const { data: pageVisits, isLoading } = useSWR(
-    `/api/analytics/visits?projectId=${projects[idx].id}&slug=${projects[idx].slug}`
+    `/api/analytics/visits?projectId=${projects[idx].id}&slug=${projects[idx].slug}`,
+    {
+      refreshInterval: 0,
+    }
   );
 
   if (isLoading) {
     return null;
   }
+
+  console.log(pageVisits);
 
   return (
     <div>
@@ -73,7 +78,7 @@ export function ProjectStats() {
             >
               <CartesianGrid vertical={false} />
               <XAxis
-                dataKey="month"
+                dataKey="day"
                 tickLine={false}
                 axisLine={false}
                 tickMargin={8}
@@ -83,7 +88,7 @@ export function ProjectStats() {
                 cursor={false}
                 content={<ChartTooltipContent hideLabel />}
               />
-              <Line dataKey="day" type="linear" strokeWidth={2} dot={false} />
+              <Line dataKey="total" type="linear" strokeWidth={2} dot={false} />
             </LineChart>
           </ChartContainer>
         </CardContent>
