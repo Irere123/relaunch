@@ -57,7 +57,7 @@ export function ProjectStats() {
     return null;
   }
 
-  console.log(data);
+  console.log(data.visits);
 
   return (
     <div>
