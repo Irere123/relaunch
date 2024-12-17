@@ -46,7 +46,7 @@ const chartConfig = {
 export function ProjectStats() {
   const { projects, selectedProjectIndex: idx } = useContext(DashboardContext);
 
-  const { data: pageVisits, isLoading } = useSWR(
+  const { data, isLoading } = useSWR(
     `/api/analytics/visits?projectId=${projects[idx].id}&slug=${projects[idx].slug}`,
     {
       refreshInterval: 0,
@@ -57,7 +57,7 @@ export function ProjectStats() {
     return null;
   }
 
-  console.log(pageVisits);
+  console.log(data);
 
   return (
     <div>
@@ -70,7 +70,7 @@ export function ProjectStats() {
           <ChartContainer config={chartConfig}>
             <LineChart
               accessibilityLayer
-              data={pageVisits}
+              data={data.visits}
               margin={{
                 left: 12,
                 right: 12,
