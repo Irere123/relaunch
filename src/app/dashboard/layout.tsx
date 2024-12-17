@@ -25,7 +25,9 @@ export default async function DashboardLayout({
     <DashboardProvider projects={projects}>
       <div className="mx-auto min-h-screen w-full max-w-screen-md">
         <Navbar />
-        <div className="py-6 md:px-6 px-4">{children}</div>
+        {projects.length > 0 ? (
+          <div className="py-6 md:px-6 px-4">{children}</div>
+        ) : null}
       </div>
     </DashboardProvider>
   );
