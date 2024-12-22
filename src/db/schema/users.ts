@@ -7,6 +7,7 @@ import {
 } from "drizzle-orm/sqlite-core";
 import type { AdapterAccountType } from "next-auth/adapters";
 import { projectTeam } from "./projects";
+import { projectReviews } from "./reviews";
 
 export const users = sqliteTable("user", {
   id: text("id")
@@ -20,6 +21,7 @@ export const users = sqliteTable("user", {
 
 export const usersRelations = relations(users, ({ many }) => ({
   members: many(projectTeam),
+  reviews: many(projectReviews),
 }));
 
 export const accounts = sqliteTable(

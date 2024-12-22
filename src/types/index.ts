@@ -1,3 +1,5 @@
+import { Review } from "@/db/schema";
+
 export type User = {
   id: string;
   name: string | null;
@@ -33,3 +35,5 @@ export interface Project extends ProjectBase {
   websiteLink: Link | undefined;
   team: ProjectContrib[];
 }
+
+export type ProjectReview = Review & { user: User };

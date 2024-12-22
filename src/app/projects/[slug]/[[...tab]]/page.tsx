@@ -31,7 +31,7 @@ export default async function ProjectPage(props: {
   }
 
   if (tab?.[0] === "reviews") {
-    return <ProjectReviews />;
+    return <ProjectReviews project={project} />;
   }
 
   return <ProjectAnalytics />;

@@ -43,3 +43,11 @@ export const editTeamSchema = z.object({
 });
 
 export const selectUserSchema = z.object({ name: z.string().min(1).max(64) });
+
+export const createReviewSchema = z.object({
+  content: z.preprocess(trim, z.string().min(2), {
+    message: "Invalid review content",
+  }),
+  userId: z.string().min(8),
+  projectId: z.string().min(8),
+});
