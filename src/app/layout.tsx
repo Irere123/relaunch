@@ -20,7 +20,6 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Relaunch",
   description: "Showcasing your ideas to the public!",
-  icons: "/relaunch.svg",
 };
 
 export default function RootLayout({
