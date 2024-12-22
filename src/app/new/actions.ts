@@ -4,7 +4,7 @@ import { parseWithZod } from "@conform-to/zod";
 import { z } from "zod";
 
 import { db } from "@/db";
-import { projects, projectTeam } from "@/db/schema";
+import { links, projects, projectTeam } from "@/db/schema";
 import { auth } from "@/modules/auth";
 import { redirect } from "next/navigation";
 
@@ -12,6 +12,7 @@ const schema = z.object({
   name: z.string(),
   description: z.string(),
   logo: z.string().url(),
+  website: z.string().url(),
 });
 
 export async function createProject(_prevState: unknown, formData: FormData) {
@@ -41,6 +42,14 @@ export async function createProject(_prevState: unknown, formData: FormData) {
     await db
       .insert(projectTeam)
       .values({ projectId: project.id, userId: session.user.id });
+
+    if (submission.value.website) {
+      await db.insert(links).values({
+        url: submission.value.website,
+        type: "WEBSITE",
+        projectId: project.id,
+      });
+    }
   } catch (error: any) {
     if (error.message.includes("UNIQUE constraint")) {
       return { error: "Project name already in taken." };

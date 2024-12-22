@@ -28,6 +28,7 @@ export async function editProject(
 
     if (
       props?.name !== name ||
+      props?.websiteLink !== website ||
       props.description !== description ||
       props.logo !== logo
     ) {
@@ -35,7 +36,7 @@ export async function editProject(
         .update(projects)
         .set({ name, description, logo })
         .where(eq(projects.id, projectId));
-
+      console.log("hello");
       await db.update(links).set({ projectId, type: "WEBSITE", url: website });
     }
 

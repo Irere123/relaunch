@@ -12,11 +12,10 @@ export const links = sqliteTable("link", {
   projectId: text("project_id").references(() => projects.id),
 });
 
-export const linkRelations = relations(links, ({ many, one }) => ({
+export const linkRelations = relations(links, ({ one }) => ({
   project: one(projects, {
     fields: [links.projectId],
     references: [projects.id],
-    relationName: "projectLink",
   }),
 }));
 

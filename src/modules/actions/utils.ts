@@ -34,7 +34,8 @@ export const editProjectSchema = z.object({
   website: z
     .string()
     .transform((v) => getUrlFromString(v))
-    .refine((l) => isValidUrl(l), { message: "Invalid Website URL" }),
+    .refine((l) => isValidUrl(l), { message: "Invalid Website URL" })
+    .optional(),
   projectId: z.string().min(8),
 });
 

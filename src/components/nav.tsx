@@ -16,7 +16,7 @@ export default function Nav() {
 async function NavRSC() {
   const [session, { stars }] = (await Promise.all([
     auth(),
-    getRepo("https://github.com/irere123/relaunch-v2"),
+    getRepo("https://github.com/irere123/relaunch"),
   ])) as [Session, { stars: number }];
 
   return <Navbar session={session} stars={stars} />;

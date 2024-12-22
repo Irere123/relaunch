@@ -184,7 +184,7 @@ export default function EditProjectForm({
           <Input
             {...register("website")}
             required
-            defaultValue={""}
+            defaultValue={props.websiteLink?.url || ""}
             placeholder="https://relaunch.dev"
             className={`${
               errors.website

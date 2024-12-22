@@ -89,7 +89,7 @@ export default async function ProjectLayout(props: {
             </Suspense>
             <Clicks clicks={project.clicks as number} id={project.id} />
           </div>
-          {project.websiteLink && (
+          {project.websiteLink?.url && (
             <a
               href={project.websiteLink.url as string}
               target="_blank"
