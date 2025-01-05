@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { analytics } from "@/db/schema";
-import { geolocation } from "@vercel/edge";
+import { geolocation } from "@vercel/functions";
 
 export const runtime = "edge";
 

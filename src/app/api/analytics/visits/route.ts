@@ -1,5 +1,4 @@
 import { and, asc, eq, sql } from "drizzle-orm";
-
 import { db } from "@/db";
 import { analytics, projects } from "@/db/schema";
 
@@ -8,17 +7,15 @@ export async function GET(request: Request) {
   const projectId = url.searchParams.get("projectId");
   const slug = url.searchParams.get("slug");
 
-  console.log(projectId);
-  console.log(slug);
-
   if (!slug || !projectId) {
-    return Response.json({ visits: [] });
+    return Response.json(
+      { error: "Missing projectId or slug" },
+      { status: 400 }
+    );
   }
 
-  let visits;
-
   try {
-    visits = await db
+    const visits = await db
       .select({
         day: sql<number>`CAST(strftime('%d', ${analytics.date}) AS INTEGER)`,
         month: sql<number>`CAST(strftime('%m', ${analytics.date}) AS INTEGER)`,
@@ -40,10 +37,10 @@ export async function GET(request: Request) {
         sql`strftime('%Y', ${analytics.date})`
       )
       .orderBy(asc(analytics.date));
-  } catch (error) {
-    console.log(error);
-    return Response.json({ visits: [] });
-  }
 
-  return Response.json({ visits });
+    return Response.json({ visits });
+  } catch (error) {
+    console.error("Error fetching analytics data:", error);
+    return Response.json({ error: "Internal Server Error" }, { status: 500 });
+  }
 }

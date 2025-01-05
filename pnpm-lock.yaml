@@ -68,6 +68,9 @@ importers:
       '@vercel/edge':
         specifier: ^1.1.2
         version: 1.1.2
+      '@vercel/functions':
+        specifier: ^1.5.2
+        version: 1.5.2
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -1548,6 +1551,15 @@ packages:
 
   '@vercel/edge@1.1.2':
     resolution: {integrity: sha512-wt5SnhsMahWX8U9ZZhFUQoiXhMn/CUxA5xeMdZX1cwyOL1ZbDR3rNI8HRT9RSU73nDxeF6jlnqJyp/0Jy0VM2A==}
+
+  '@vercel/functions@1.5.2':
+    resolution: {integrity: sha512-9XuynFoM/J1X+LSahgjhuAZCbZ96vm9mpXapCkSS1MX890U7zLh7n2RW/2KLNuxsXt8u8h2dOCw+Njtg+7pXgQ==}
+    engines: {node: '>= 16'}
+    peerDependencies:
+      '@aws-sdk/credential-provider-web-identity': '*'
+    peerDependenciesMeta:
+      '@aws-sdk/credential-provider-web-identity':
+        optional: true
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -4574,6 +4586,8 @@ snapshots:
       eslint-visitor-keys: 3.4.3
 
   '@vercel/edge@1.1.2': {}
+
+  '@vercel/functions@1.5.2': {}
 
   acorn-jsx@5.3.2(acorn@8.14.0):
     dependencies:
