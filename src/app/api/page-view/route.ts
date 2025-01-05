@@ -6,24 +6,38 @@ export const runtime = "edge";
 
 export async function POST(request: Request) {
   const date = new Date().toISOString();
-  const { projectId, slug } = await new Response(request.body).json();
 
-  const { city, country, flag, latitude, longitude } = geolocation(request);
+  try {
+    const { projectId, slug } = await request.json();
 
-  if (!(flag && country && city && latitude && longitude && projectId)) {
-    return Response.json({ message: "Missing required parameters" });
-  } else {
+    if (!projectId || !slug) {
+      return Response.json(
+        { message: "Missing projectId or slug" },
+        { status: 400 }
+      );
+    }
+
+    // geolocation data from (Edge runtime)
+    const { city, country, flag, latitude, longitude } =
+      geolocation(request) || {};
+
     await db.insert(analytics).values({
-      city,
-      country,
+      city: city || null,
+      country: country || null,
       date,
-      flag,
-      latitude,
-      longitude,
+      flag: flag || null,
+      latitude: latitude || null,
+      longitude: longitude || null,
       projectId,
       slug,
     });
 
     return Response.json({ message: "A OK" });
+  } catch (error) {
+    console.error("Error recording page view:", error);
+    return Response.json(
+      { message: "Failed to record page view" },
+      { status: 500 }
+    );
   }
 }
