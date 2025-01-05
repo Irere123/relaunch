@@ -7,7 +7,7 @@ export const analytics = sqliteTable("analytic", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
-  slug: text("slug").unique(),
+  slug: text("slug"),
   flag: text("flug"),
   country: text("country"),
   city: text("city"),
