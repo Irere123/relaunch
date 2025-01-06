@@ -1,6 +1,6 @@
-import { Project } from "@/db/schema";
 import { cn } from "@/lib/utils";
 import ProjectCard from "./project-card";
+import { Project } from "@/types";
 
 export const ProjectsGrid: React.FC<{
   className?: string;

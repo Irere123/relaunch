@@ -6,6 +6,8 @@ import { getUserProfile } from "@/modules/user/get-user";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { getUserProjects } from "@/modules/actions/get-user-projects";
 import { ProjectsGrid } from "@/components/projects/projects-grid";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface Props {
   params: { id: string };
@@ -48,6 +50,11 @@ export default async function ProfilePage({ params }: Props) {
           height={100}
           className="h-16 w-16 rounded-full bg-white p-2 sm:h-24 sm:w-24"
         />
+        <div className="flex items-center space-x-2 py-2">
+          <Link href={"/auth/sign-out"}>
+            <Button>Logout</Button>
+          </Link>
+        </div>
       </div>
 
       <div className="relative mx-4 flex flex-col min-h-[22rem] bg-white p-4">

@@ -1,8 +1,9 @@
+import { Button } from "@/components/ui/button";
 import { signOut } from "@/modules/auth";
 
 export default function SignOutPage() {
   return (
-    <div>
+    <div className="w-full h-screen flex flex-col justify-center items-center">
       <h5>Are you sure you want to sign out?</h5>
       <form
         action={async () => {
@@ -10,7 +11,9 @@ export default function SignOutPage() {
           await signOut({ redirectTo: "/" });
         }}
       >
-        <button type="submit">Sign out</button>
+        <Button type="submit" variant={"destructive"}>
+          Sign out
+        </Button>
       </form>
     </div>
   );

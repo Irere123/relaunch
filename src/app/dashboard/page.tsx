@@ -1,8 +1,9 @@
 "use client";
 
+import { useContext } from "react";
+
 import { ProjectStats } from "@/components/dashboard/project-stats";
 import { ProjectSelect } from "@/components/dashboard/project-select";
-import { useContext } from "react";
 import { DashboardContext } from "@/components/dashboard/dashboard-provider";
 
 export default async function DashboardPage() {

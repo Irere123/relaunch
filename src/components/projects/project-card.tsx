@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Eye } from "lucide-react";
 
-import { Project } from "@/db/schema";
 import { cn, nFormatter } from "@/lib/utils";
 import { buttonLinkVariants } from "../ui/button-link";
+import { Project } from "@/types";
 
 export default function ProjectCard(project: Project) {
   return (
