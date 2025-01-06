@@ -54,10 +54,8 @@ export function ProjectStats() {
   );
 
   if (isLoading) {
-    return null;
+    return <div className="h-96 w-full animate-pulse rounded-lg bg-gray-100" />;
   }
-
-  console.log(data.visits);
 
   return (
     <div>
