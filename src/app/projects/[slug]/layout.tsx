@@ -1,5 +1,5 @@
 import { getProject } from "@/modules/actions";
-import { Eye, Globe } from "lucide-react";
+import { Eye, Globe, Star } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -77,8 +77,8 @@ export default async function ProjectLayout(props: {
         </div>
         <div className="relative -mt-8 flex items-center justify-between px-4 sm:-mt-12 sm:items-end md:pr-0">
           <Image
-            src={project.logo || "/relaunch.svg"}
-            alt={""}
+            src={project.logo!}
+            alt={project.name}
             width={100}
             height={100}
             className="h-16 w-16 rounded-full bg-white p-2 sm:h-24 sm:w-24"
@@ -87,24 +87,18 @@ export default async function ProjectLayout(props: {
             <Suspense>
               <EditProjectButton project={project} />
             </Suspense>
-            <Clicks clicks={project.clicks as number} id={project.id} />
+
+            {project.websiteLink && (
+              <a
+                href={project.websiteLink.url as string}
+                target="_blank"
+                className={buttonLinkVariants()}
+              >
+                <Globe className="h-4 w-4" />
+                <p className="text-sm">Website</p>
+              </a>
+            )}
           </div>
-          {project.websiteLink?.url && (
-            <a
-              href={project.websiteLink.url as string}
-              target="_blank"
-              className={buttonLinkVariants()}
-            >
-              <Globe className="h-4 w-4" />
-              <p className="text-sm">Website</p>
-            </a>
-          )}
-        </div>
-        <div className="max-w-lg p-4 pb-0">
-          <div className="flex items-center space-x-2">
-            <h1 className="font-display text-3xl font-bold">{}</h1>
-          </div>
-          <p className="mt-2 text-gray-500">{}</p>
         </div>
         <ProjectLayoutTabs />
         <div className="relative mx-4 flex min-h-[22rem] items-center justify-center rounded-xl border border-gray-200 bg-white p-4">
