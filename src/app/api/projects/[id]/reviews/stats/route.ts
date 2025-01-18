@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/modules/auth";
-import { db } from "@/db";
 import { and, eq, sql } from "drizzle-orm";
-import { projectReviews } from "@/db/schema";
+
+import { db, projectReviews } from "@/db";
 
 const formatDate = (date: Date) => {
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
@@ -13,12 +12,6 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await auth();
-
-    if (!session?.user?.id) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
-
     // Get the last 7 days of reviews
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);

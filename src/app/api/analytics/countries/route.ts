@@ -1,18 +1,12 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/modules/auth";
-import { db } from "@/db";
 import { eq, sql } from "drizzle-orm";
-import { analytics } from "@/db/schema";
+
+import { db, analytics } from "@/db";
 
 export async function GET(request: Request) {
   try {
-    const session = await auth();
     const { searchParams } = new URL(request.url);
     const projectId = searchParams.get("projectId");
-
-    if (!session?.user?.id) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
 
     if (!projectId) {
       return new NextResponse("Project ID is required", { status: 400 });
