@@ -34,5 +34,5 @@ export default async function ProjectPage(props: {
     return <ProjectReviews project={project} />;
   }
 
-  return <ProjectAnalytics />;
+  return <ProjectAnalytics projectId={project.id} />;
 }
