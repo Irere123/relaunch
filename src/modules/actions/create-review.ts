@@ -22,7 +22,16 @@ export async function createReview(
     await authUser();
 
     if (projectId && content && userId) {
-      await db.insert(projectReviews).values({ content, projectId, userId });
+      const review = await db
+        .insert(projectReviews)
+        .values({ content, projectId, userId })
+        .returning();
+
+      return {
+        status: "success",
+        message: "Review added successfully",
+        data: review[0],
+      };
     }
 
     return {

@@ -1,158 +1,96 @@
 "use client";
 
 import useSWR from "swr";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  LabelList,
-  Line,
-  LineChart,
-  XAxis,
-  YAxis,
-} from "recharts";
-
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
 import { useContext } from "react";
+
 import { DashboardContext } from "./dashboard-provider";
+import { AreaChart } from "../ui/area-chart";
+import { BarList } from "../ui/bar-list";
+import { ProjectStatsLoading } from "./project-stats-loading";
 
-const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 73 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
-];
-
-const chartConfig = {
-  total: {
-    label: "Visitors",
-  },
-} satisfies ChartConfig;
+const dataFormatter = (num: number) =>
+  `${Intl.NumberFormat("us").format(num).toString()}`;
 
 export function ProjectStats() {
   const { projects, selectedProjectIndex: idx } = useContext(DashboardContext);
+  const currentProject = projects[idx];
 
-  const { data, isLoading } = useSWR(
-    `/api/analytics/visits?projectId=${projects[idx].id}&slug=${projects[idx].slug}`,
-    {
-      refreshInterval: 0,
-    }
+  const { data: analyticsData, isLoading: analyticsLoading } = useSWR(
+    `/api/analytics/visits?projectId=${currentProject?.id}`
   );
 
-  if (isLoading) {
-    return <div className="h-96 w-full animate-pulse rounded-lg bg-gray-100" />;
+  const { data: reviewStats, isLoading: reviewsLoading } = useSWR(
+    `/api/projects/${currentProject?.id}/reviews/stats`
+  );
+
+  const { data: countryStats, isLoading: countriesLoading } = useSWR(
+    `/api/analytics/countries?projectId=${currentProject?.id}`
+  );
+
+  if (analyticsLoading || reviewsLoading || countriesLoading) {
+    return <ProjectStatsLoading />;
   }
 
+  const reviewData =
+    reviewStats?.weekly.map((item: any) => ({
+      name: item.date,
+      value: item.count,
+    })) || [];
+
+  const countryData =
+    countryStats?.countries.map((item: any) => ({
+      name: item.country,
+      value: item.visits,
+      icon: (
+        <img
+          src={`https://flagcdn.com/w40/${item.country.toLowerCase()}.png`}
+          className="h-3 w-5 rounded-sm"
+          alt={item.country}
+        />
+      ),
+    })) || [];
+
   return (
-    <div>
-      <Card>
-        <CardHeader>
-          <CardTitle>Page visits</CardTitle>
-          <CardDescription>Page visits in the last 30 days</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ChartContainer config={chartConfig}>
-            <LineChart
-              accessibilityLayer
-              data={data.visits}
-              margin={{
-                left: 12,
-                right: 12,
-              }}
-            >
-              <CartesianGrid vertical={false} />
-              <XAxis
-                dataKey="day"
-                tickLine={false}
-                axisLine={false}
-                tickMargin={8}
-              />
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
-              />
-              <Line dataKey="total" type="linear" strokeWidth={2} dot={false} />
-            </LineChart>
-          </ChartContainer>
-        </CardContent>
-      </Card>
-      <div className="grid md:grid-cols-2 grid-cols-1 mt-6 gap-4">
-        <Card>
-          <CardHeader>
-            <CardTitle>REVIEWS</CardTitle>
-            <CardDescription>Total in the last 7 days</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ChartContainer config={{}}>
-              <BarChart
-                accessibilityLayer
-                data={chartData}
-                layout="vertical"
-                margin={{
-                  right: 16,
-                }}
-              >
-                <CartesianGrid horizontal={false} />
-                <YAxis
-                  dataKey="month"
-                  type="category"
-                  tickLine={false}
-                  tickMargin={10}
-                  axisLine={false}
-                  tickFormatter={(value) => value.slice(0, 3)}
-                  hide
-                />
-                <XAxis dataKey="desktop" type="number" hide />
-                <ChartTooltip
-                  cursor={false}
-                  content={<ChartTooltipContent indicator="line" />}
-                />
-                <Bar
-                  dataKey="desktop"
-                  layout="vertical"
-                  fill="var(--color-desktop)"
-                  radius={4}
-                >
-                  <LabelList
-                    dataKey="month"
-                    position="insideLeft"
-                    offset={8}
-                    className="fill-[--color-label]"
-                    fontSize={12}
-                  />
-                  <LabelList
-                    dataKey="desktop"
-                    position="right"
-                    offset={8}
-                    className="fill-foreground"
-                    fontSize={12}
-                  />
-                </Bar>
-              </BarChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>TOTAL BY COUNTRY</CardTitle>
-            <CardDescription>Top ten country visits</CardDescription>
-          </CardHeader>
-          <CardContent></CardContent>
-        </Card>
+    <div className="space-y-6">
+      <div>
+        <h2 className="text-lg font-semibold text-gray-900 mb-4">
+          Performance Overview
+        </h2>
+        <div className="rounded-lg border border-gray-200 bg-white p-5 shadow-[0_1px_3px_0_rgba(0,0,0,0.08)]">
+          <AreaChart
+            className="h-72"
+            data={analyticsData?.visits || []}
+            index="date"
+            categories={["Visitors", "Reviews"]}
+            colors={["blue", "emerald"]}
+            valueFormatter={dataFormatter}
+            showLegend={true}
+            showGridLines={false}
+            showXAxis={true}
+            showYAxis={true}
+            yAxisWidth={65}
+          />
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-6">
+        <div>
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            Review Activity
+          </h2>
+          <div className="rounded-lg border border-gray-200 bg-white p-5 shadow">
+            <BarList data={reviewData} valueFormatter={dataFormatter} />
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            Geographic Reach
+          </h2>
+          <div className="rounded-lg border border-gray-200 bg-white p-5 shadow">
+            <BarList data={countryData} valueFormatter={dataFormatter} />
+          </div>
+        </div>
       </div>
     </div>
   );

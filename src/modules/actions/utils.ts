@@ -5,15 +5,15 @@ import { z } from "zod";
 
 export type FormResponse =
   | {
-      status: "success";
-      message: string;
-    }
-  | {
       status: "error";
       message: string;
-      errors?: Array<{ path: string; message: string }>;
+      errors?: { path: string; message: string }[];
     }
-  | null;
+  | {
+      status: "success";
+      message: string;
+      data?: any;
+    };
 
 export const editGradientSchema = z.object({
   gradient: z.enum(PROJECT_GRADIENTS as [string, ...string[]]),

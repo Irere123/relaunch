@@ -2,46 +2,33 @@
 
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
+import { RefreshCcw } from "lucide-react";
+import useSWR from "swr";
+
 import { buttonLinkVariants } from "../ui/button-link";
 import { LoadingSpinner } from "../icons";
-import { RefreshCcw } from "lucide-react";
 import { AreaChart } from "../ui/area-chart";
-
-const chartdata = [
-  {
-    date: "Jan 22",
-    Reviews: 12,
-    Clicks: 10,
-  },
-  {
-    date: "Feb 22",
-    Reviews: 7,
-    Clicks: 27,
-  },
-  {
-    date: "Mar 22",
-    Reviews: 30,
-    Clicks: 11,
-  },
-  {
-    date: "Apr 22",
-    Reviews: 20,
-    Clicks: 40,
-  },
-];
 
 const dataFormatter = (num: number) =>
   `${Intl.NumberFormat("us").format(num).toString()}`;
 
-export function ProjectAnalyticsClient() {
+export function ProjectAnalyticsClient({ projectId }: { projectId: string }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+
+  const { data: analyticsData, isLoading } = useSWR(
+    `/api/analytics/visits?projectId=${projectId}`
+  );
 
   const refreshData = async () => {
     startTransition(() => {
       router.refresh();
     });
   };
+
+  if (isLoading) {
+    return <div className="h-72 w-full animate-pulse bg-gray-50 rounded-lg" />;
+  }
 
   return (
     <div className="w-full">
@@ -58,15 +45,21 @@ export function ProjectAnalyticsClient() {
           )}
         </button>
       </div>
-      <AreaChart
-        className="mt-4 h-72"
-        data={chartdata}
-        index="date"
-        yAxisWidth={65}
-        categories={["Clicks", "Reviews"]}
-        colors={["fuchsia", "cyan"]}
-        valueFormatter={dataFormatter}
-      />
+      <div className="p-5">
+        <AreaChart
+          className="h-72"
+          data={analyticsData?.visits || []}
+          index="date"
+          categories={["Visitors", "Reviews"]}
+          colors={["blue", "emerald"]}
+          valueFormatter={dataFormatter}
+          showLegend={true}
+          showGridLines={false}
+          showXAxis={true}
+          showYAxis={true}
+          yAxisWidth={65}
+        />
+      </div>
     </div>
   );
 }

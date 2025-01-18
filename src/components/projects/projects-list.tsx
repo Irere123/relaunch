@@ -1,7 +1,8 @@
 import { Suspense } from "react";
+
 import { ProjectsGrid } from "./projects-grid";
-import { db } from "@/db";
-import { projects } from "@/db/schema";
+import { Project } from "@/types";
+import { getProjectsWithAnalytics } from "@/modules/projects/get-projects";
 
 export default function ProjectsList() {
   return (
@@ -12,11 +13,18 @@ export default function ProjectsList() {
 }
 
 async function ProjectsListRSC() {
-  const projectsFromDb = await db.select().from(projects);
+  const projectsWithVisits = await getProjectsWithAnalytics();
 
   return (
     <div className="py-10">
-      <ProjectsGrid projects={projectsFromDb} />
+      <ProjectsGrid
+        projects={
+          projectsWithVisits.map((project) => ({
+            ...project,
+            clicks: project.visitors,
+          })) as unknown as Project[]
+        }
+      />
     </div>
   );
 }

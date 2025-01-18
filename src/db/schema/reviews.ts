@@ -21,6 +21,10 @@ export const projectReviews = sqliteTable("project_review", {
 
 export const projectReviewsRelations = relations(projectReviews, ({ one }) => ({
   user: one(users, { fields: [projectReviews.userId], references: [users.id] }),
+  project: one(projects, {
+    fields: [projectReviews.projectId],
+    references: [projects.id],
+  }),
 }));
 
 export type Review = typeof projectReviews.$inferSelect;
