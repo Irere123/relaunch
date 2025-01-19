@@ -19,59 +19,57 @@ export async function GET(request: Request) {
     // Get the last 30 days of visits
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-    const thirtyDaysAgoTimestamp = thirtyDaysAgo.getTime();
+    const thirtyDaysAgoTimestamp = thirtyDaysAgo.toISOString();
 
-    // Get visits data
+    // Get visits data with unique visitors per day
     const visitData = await db
       .select({
-        date: analytics.date,
-        visits: sql<number>`count(*)`,
+        date: sql`date(${analytics.date})`.as("date"),
+        visits: sql<number>`COUNT(DISTINCT ${analytics.id})`.as("visits"),
       })
       .from(analytics)
       .where(
         and(
           eq(analytics.projectId, projectId),
-          sql`${analytics.date} >= ${thirtyDaysAgoTimestamp}`
+          sql`date(${analytics.date}) >= date(${thirtyDaysAgoTimestamp})`
         )
       )
-      .groupBy(analytics.date);
+      .groupBy(sql`date(${analytics.date})`);
 
     // Get reviews data
     const reviewData = await db
       .select({
-        date: projectReviews.createdAt,
-        reviews: sql<number>`count(*)`,
+        date: sql`date(${projectReviews.createdAt})`.as("date"),
+        reviews: sql<number>`count(*)`.as("reviews"),
       })
       .from(projectReviews)
       .where(
         and(
           eq(projectReviews.projectId, projectId),
-          sql`${projectReviews.createdAt} >= ${thirtyDaysAgoTimestamp}`
+          sql`date(${projectReviews.createdAt}) >= date(${thirtyDaysAgoTimestamp})`
         )
       )
-      .groupBy(projectReviews.createdAt);
+      .groupBy(sql`date(${projectReviews.createdAt})`);
 
     // Combine and format data
     const allDates = [];
     for (let i = 0; i < 30; i++) {
       const date = new Date();
       date.setDate(date.getDate() - i);
-      const isoDate = date.toISOString().split("T")[0];
+      const dateStr = formatDate(date);
 
       // Find visit count for this date
-      const visitForDate = visitData.find((v) => {
-        if (!v.date) return false;
-        return new Date(v.date).toISOString().split("T")[0] === isoDate;
-      });
+      const visitForDate = visitData.find(
+        (v) => v.date && formatDate(new Date(v.date.toString())) === dateStr
+      );
 
       // Find review count for this date
-      const reviewForDate = reviewData.find((r) => {
-        if (!r.date) return false;
-        return new Date(r.date).toISOString().split("T")[0] === isoDate;
-      });
+      const reviewForDate = reviewData.find(
+        (r) => r.date && formatDate(new Date(r.date.toString())) === dateStr
+      );
 
       allDates.push({
-        date: formatDate(date),
+        date: dateStr,
         Visitors: visitForDate?.visits || 0,
         Reviews: reviewForDate?.reviews || 0,
       });
