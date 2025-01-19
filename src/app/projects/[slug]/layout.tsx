@@ -1,5 +1,5 @@
 import { getProject } from "@/modules/actions";
-import { Eye, Globe, Star } from "lucide-react";
+import { Globe } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -8,9 +8,8 @@ import { MainLayout } from "@/components/layouts/MainLayout";
 import { buttonLinkVariants } from "@/components/ui/button-link";
 import { db } from "@/db";
 import { projects } from "@/db/schema";
-import { cn, constructMetadata, nFormatter } from "@/lib/utils";
+import { cn, constructMetadata } from "@/lib/utils";
 import ProjectLayoutTabs from "@/components/projects/project-layout-tabs";
-import incrementClicks from "@/modules/projects/incrementClicks";
 import { EditGradientPopover } from "@/components/projects/edit-gradient-popover";
 import { ProjectContextProvider } from "@/components/projects/project-provider";
 import { EditProjectButton } from "@/components/projects/edit-project-button";
@@ -106,19 +105,5 @@ export default async function ProjectLayout(props: {
         </div>
       </MainLayout>
     </ProjectContextProvider>
-  );
-}
-
-async function Clicks({ id, clicks }: { id: string; clicks: number }) {
-  incrementClicks(id);
-
-  return (
-    <button
-      type="button"
-      className={buttonLinkVariants({ variant: "secondary" })}
-    >
-      <Eye className="h-4 w-4" />
-      <p className="text-sm">{nFormatter(clicks, { full: true })}</p>
-    </button>
   );
 }
