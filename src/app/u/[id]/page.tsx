@@ -1,16 +1,17 @@
 import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { constructMetadata } from "@/lib/utils";
 import { getUserProfile } from "@/modules/user/get-user";
 import { MainLayout } from "@/components/layouts/MainLayout";
-import { getUserProjects } from "@/modules/actions/get-user-projects";
+import { getProjectsWithAnalytics } from "@/modules/projects/get-projects";
 import { ProjectsGrid } from "@/components/projects/projects-grid";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Project } from "@/types";
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export async function generateMetadata({ params }: Props) {
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: Props) {
 export default async function ProfilePage({ params }: Props) {
   const { id } = await params;
   const user = await getUserProfile(id);
-  const projects = await getUserProjects({ userId: id });
+  const projectsWithVisits = await getProjectsWithAnalytics();
 
   if (!user) {
     redirect("/");
@@ -60,7 +61,14 @@ export default async function ProfilePage({ params }: Props) {
       <div className="relative mx-4 flex flex-col min-h-[22rem] bg-white p-4">
         <h2 className="font-medium text-lg">Gallery</h2>
         <div className="py-10">
-          <ProjectsGrid projects={projects} />
+          <ProjectsGrid
+            projects={
+              projectsWithVisits.map((project) => ({
+                ...project,
+                clicks: project.visitors,
+              })) as unknown as Project[]
+            }
+          />
         </div>
       </div>
     </MainLayout>
