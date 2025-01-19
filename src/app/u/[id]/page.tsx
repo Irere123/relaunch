@@ -8,6 +8,7 @@ import { getUserProjects } from "@/modules/actions";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { ProjectsGrid } from "@/components/projects/projects-grid";
 import { Button } from "@/components/ui/button";
+import { auth } from "@/modules/auth";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -29,6 +30,7 @@ export async function generateMetadata({ params }: Props) {
 export default async function ProfilePage({ params }: Props) {
   const { id } = await params;
   const user = await getUserProfile(id);
+  const session = await auth();
   const projects = await getUserProjects({ userId: id });
 
   if (!user) {
@@ -51,9 +53,11 @@ export default async function ProfilePage({ params }: Props) {
           className="h-16 w-16 rounded-full bg-white p-2 sm:h-24 sm:w-24"
         />
         <div className="flex items-center space-x-2 py-2">
-          <Link href={"/auth/sign-out"}>
-            <Button>Logout</Button>
-          </Link>
+          {session?.user && user?.id === session?.user?.id ? (
+            <Link href={"/auth/sign-out"}>
+              <Button>Logout</Button>
+            </Link>
+          ) : null}
         </div>
       </div>
 
